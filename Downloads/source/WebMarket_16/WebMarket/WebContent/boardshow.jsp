@@ -106,7 +106,7 @@ div {
 		<h4><%=id%>님
 		</h4>
 		<h4>
-			<a href="logoutboard.jsp">로그아웃</a>
+			<a href="boardlogout.jsp">로그아웃</a>
 		</h4>
 	</div>
 	<%

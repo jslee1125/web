@@ -106,7 +106,7 @@ div {
 		<h4><%=id%>님
 		</h4>
 		<h4>
-			<a href="logoutboard.jsp">로그아웃</a>
+			<a href="boardlogout.jsp">로그아웃</a>
 		</h4>
 	</div>
 	<%
@@ -117,7 +117,7 @@ div {
 	%>
 	<div class="container">
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
-		<h2>게시글</h2>
+		<h2>문의하기</h2>
 		<table class="table table-hover" border="1">
 			<tr>
 				<th style="width: 15%; text-align: center;">제목</th>

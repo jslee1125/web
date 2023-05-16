@@ -96,7 +96,7 @@ div {
 		<h4><%=id%>님
 		</h4>
 		<h4>
-			<a href="logoutboard.jsp">로그아웃</a>
+			<a href="boardlogout.jsp">로그아웃</a>
 		</h4>
 	</div>
 	<%
@@ -105,7 +105,7 @@ div {
 
 	<div class="container">
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
-		<h2>게시판</h2>
+		<h2>상품 문의</h2>
 		<%@ include file="boardmenu.jsp"%>
 		<br>
 		<form action="boardinquire.jsp" method="post" name="member">

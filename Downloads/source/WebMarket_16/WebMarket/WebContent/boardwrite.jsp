@@ -89,7 +89,7 @@ div {
 		<h4><%=id%>님
 		</h4>
 		<h4>
-			<a href="logoutboard.jsp">로그아웃</a>
+			<a href="boardlogout.jsp">로그아웃</a>
 		</h4>
 	</div>
 	<%
@@ -139,6 +139,7 @@ div {
 					<tr>
 						<td><a href="./boardshow.jsp?title=<%=board.getNumber()%>"><%=(currentPage - 1) * 10 + num%></a></td>
 						<td><a href="./boardshow.jsp?title=<%=board.getNumber()%>"><%=board.getTitle()%></a></td>
+						
 						<td><%=board.getRating()%></td>
 						<td><%=board.getWriter()%></td>
 						<td><%=board.getRegisterDateTime().toLocalDate()%></td>
