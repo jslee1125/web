@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ page import="model.*"%>
+<%@ page import="ch18.com.model.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.time.LocalDateTime"%>
 <!DOCTYPE html>
@@ -16,6 +16,13 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	function goToBoardChange(title, number) {
+		var url = 'boardchange.jsp?title=' + encodeURIComponent(title)
+				+ '&number=' + encodeURIComponent(number);
+		location.href = url;
+	}
+</script>
 <style>
 div {
 	width: 90%;
@@ -54,11 +61,13 @@ div {
 	<%@ include file="dbconn.jsp"%>
 	<%
 	int num = 1;
+	PreparedStatement stmt = null;
+	ResultSet rs = null;
 	try {
 
-		pstmt = conn.prepareStatement("select * from board where titlenum='" + Number + "'");
+		stmt = conn.prepareStatement("select * from board where titlenum='" + Number + "'");
 
-		rs = pstmt.executeQuery();
+		rs = stmt.executeQuery();
 
 		while (rs.next()) {
 			title = rs.getString("title");
@@ -74,8 +83,8 @@ div {
 		try {
 			if (rs != null)
 		rs.close();
-			if (pstmt != null)
-		pstmt.close();
+			if (stmt != null)
+		stmt.close();
 			if (conn != null)
 		conn.close();
 		} catch (Exception excep) {
@@ -104,8 +113,8 @@ div {
 	</div>
 	<%
 	}
-	if(id == null){
-		id="";
+	if (id == null) {
+	id = "";
 	}
 	%>
 	<div class="container">
@@ -143,9 +152,14 @@ div {
 
 		</table>
 		<form action="boardwrite.jsp" method="post">
-		<%if(id.equals(writer)){ %>
-		<button type="button" class="btn btn-default"><a href="boardchange.jsp?title=<%=title%>&number=<%=Number%>">수정 &nbsp</a></button>
-		<%} %>
+			<%
+			if (id.equals(writer)) {
+			%>
+			<button type="button" class="btn btn-default"
+				onclick="goToBoardChange('<%=title%>', '<%=Number%>')">수정</button>
+			<%
+			}
+			%>
 			<button type="submit" class="btn btn-default">뒤로</button>
 		</form>
 	</div>
