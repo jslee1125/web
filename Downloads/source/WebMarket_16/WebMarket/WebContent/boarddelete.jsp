@@ -14,7 +14,6 @@
 	request.setCharacterEncoding("utf-8");
 	int number = Integer.parseInt(request.getParameter("number"));
 
-	PreparedStatement pstmt = null;
 
 	try {
 		String sql = "delete from board where titlenum = ?";

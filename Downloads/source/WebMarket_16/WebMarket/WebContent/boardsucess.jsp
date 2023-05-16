@@ -20,7 +20,7 @@
 		rating = "0";
 	}
 	
-	PreparedStatement pstmt = null;
+	 
 
 	if (writer != null) {
 		try {

@@ -21,7 +21,7 @@
 	}
 	int number =(int) session.getAttribute("number");
 	int num = 1;
-	PreparedStatement pstmt = null;
+ 
 
 	if (writer != null) {
 		try {

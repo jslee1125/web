@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ page import="ch18.com.model.*"%>
+<%@ page import="model.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.time.LocalDateTime"%>
 <!DOCTYPE html>
@@ -60,9 +60,7 @@ div {
 	%>
 	<%@ include file="dbconn.jsp"%>
 	<%
-	int num = 1;
-	PreparedStatement stmt = null;
-	ResultSet rs = null;
+	PreparedStatement stmt = null;;
 	try {
 
 		stmt = conn.prepareStatement("select * from board where titlenum='" + Number + "'");
