@@ -32,6 +32,7 @@ body>div {
 <body>
 	<br>
 	<div class="container">
+	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
 		<h2>공지 사항</h2>
 		<form action="announcementsuccess.jsp" method="post">
@@ -54,7 +55,7 @@ body>div {
 		<form action="announcement.jsp" method="post">
 			<button type="submit" class="btn btn-default">취소</button>
 		</form>
-
+		<p></p>
 	</div>
 
 </body>

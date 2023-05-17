@@ -17,10 +17,11 @@
 div {
 	width: 90%;
 }
+
 body {
-	background-image: url("img/boardback.jpg"); 
+	background-image: url("img/boardback.jpg");
 	background-size: 100% 800px;
-	background-repeat : no-repeat
+	background-repeat: no-repeat
 }
 
 body>div {
@@ -28,32 +29,35 @@ body>div {
 }
 </style>
 </head>
-<body> 
+<body>
 	<br>
 	<div class="container">
+	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
 		<h2>상품 문의</h2>
 		<form action="boardinquiresucess.jsp" method="post">
-		  
+
 			<div class="form-group">
-				<label for="title">제목</label>  <label style="float : right;">비공개하기</label><input type="checkbox" style="float : right;" name="check" value="비공개"> <input type="text"
-					class="form-control" id="title" placeholder="제목 입력(4-100)"
-					name="title" maxlength="100" required="required" pattern=".{4,100}">
+				<label for="title">제목</label> <label style="float: right;">비공개하기</label><input
+					type="checkbox" style="float: right;" name="check" value="비공개">
+				<input type="text" class="form-control" id="title"
+					placeholder="제목 입력(4-100)" name="title" maxlength="100"
+					required="required" pattern=".{4,100}">
 			</div>
-			
+
 			<div class="form-group">
 				<label for="content">내용</label>
 				<textarea class="form-control" rows="5" id="content" name="content"
 					placeholder="내용 작성" style="resize: none;"></textarea>
 			</div>
 			<p>
-			<button type="submit" class="btn btn-default">등록</button>
+				<button type="submit" class="btn btn-default">등록</button>
 		</form>
 		<p>
 		<form action="boardinquirewrite.jsp" method="post">
 			<button type="submit" class="btn btn-default">취소</button>
 		</form>
-		
+		<p></p>
 	</div>
 
 </body>

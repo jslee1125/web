@@ -18,7 +18,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	function goToBoardChange(title, number) {
-		var url = 'boardchange.jsp?title=' + encodeURIComponent(title)
+		var url = 'boardinquirechange.jsp?title=' + encodeURIComponent(title)
 				+ '&number=' + encodeURIComponent(number);
 		location.href = url;
 	}
@@ -82,6 +82,7 @@ body>div {
 	}
 	%>
 	<div class="container">
+	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
 		<h2>문의하기</h2>
 		<table class="table table-hover" border="1">
@@ -105,7 +106,7 @@ body>div {
 			</tr>
 
 		</table>
-		<form action="boardwrite.jsp" method="post">
+		<form action="boardinquirewrite.jsp" method="post">
 			<%
 			if (writer.equals(id)) {
 			%>
@@ -116,6 +117,7 @@ body>div {
 			%>
 			<button type="submit" class="btn btn-default">뒤로</button>
 		</form>
+		<p></p>
 	</div>
 </body>
 </html>

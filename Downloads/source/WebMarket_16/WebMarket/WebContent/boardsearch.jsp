@@ -61,10 +61,12 @@ body>div {
 	int num = 1;
 	List<BoardInfo> boards = new ArrayList<BoardInfo>();
 	String id = (String) session.getAttribute("userId");
+	String search = request.getParameter("search");
 
 	try {
 
-		pstmt = conn.prepareStatement("select * from board ORDER BY titlenum DESC");
+		pstmt = conn.prepareStatement("SELECT * FROM board WHERE title LIKE ? ORDER BY titlenum DESC");
+		pstmt.setString(1, "%" + search + "%");
 		rs = pstmt.executeQuery();
 
 		while (rs.next()) {
@@ -198,7 +200,7 @@ body>div {
 				%>
 			</div>
 			<input type="button" value="검색" onclick="boardsearch()" name="bt"
-				style="float: right;"> <input type="search" id="search" onkeydown="return checkEnter(event)"
+				style="float: right;"> <input type="search" id="search" value="<%=search %>" onkeydown="return checkEnter(event)"
 				name="search" style="float: right;">
 			<input type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
 			<input type="hidden" value="<%=id%>" name="id"> <br>

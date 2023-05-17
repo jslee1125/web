@@ -5,7 +5,7 @@
     <th ><a href="testmain.jsp">&nbsp&nbspHome</a>&nbsp;</th>
     <th><a href="boardwrite.jsp">&nbsp&nbsp상품후기</a>&nbsp;</th>
     <th><a href="boardinquirewrite.jsp">&nbsp&nbsp상품문의</a>&nbsp;</th>
-    <th><a href="announcement.jsp">&nbsp&nbsp이벤트</a>&nbsp;</th>
+    <th><a href="boardeventwrite.jsp">&nbsp&nbsp이벤트</a>&nbsp;</th>
     <th><a href="announcement.jsp">&nbsp&nbsp공지사항</a>&nbsp;</th>
   </tr>
 </table>

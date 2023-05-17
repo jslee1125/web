@@ -26,6 +26,17 @@
 		}
 
 	}
+	function boardsearch() {
+		var form = document.member;
+		var url = 'boardinquiresearch.jsp?search=' + encodeURIComponent(form.search.value);
+		location.href = url;
+
+	}
+	function checkEnter(event) {
+		if (event.keyCode === 13) { // Enter 키의 keyCode는 13입니다.
+			return false;
+		}
+	}
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -93,6 +104,7 @@ body>div {
 
 
 	<div class="container">
+		<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
 		<h2>상품 문의</h2>
 		<%
@@ -153,11 +165,11 @@ body>div {
 					%>
 					<%
 					for (BoardInfo board : currentBoards) {
-						if (admin.equals(id)) {
-							board.setRating("관리자");
-						}
 						if (board.getWriter().equals(id)) {
 							board.setRating("내글");
+						}
+						if (admin.equals(id)) {
+							board.setRating("관리자");
 						}
 						if (board.getRating().equals("비공개")) {
 							board.setTitle("비밀글은 작성자와 관리자만 볼 수 있습니다.");
@@ -205,11 +217,13 @@ body>div {
 				}
 				%>
 			</div>
-			<p>
-				<input type="hidden" value="<%=id%>" name="id"> <br> <input
-					type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
-			</p>
+				<input type="button" value="검색" onclick="boardsearch()" name="bt"
+					style="float: right;"> <input type="search" id="search" onkeydown="return checkEnter(event)"
+					name="search" style="float: right;">
+			<input type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
+			<input type="hidden" value="<%=id%>" name="id"> <br>
 		</form>
+		<p></p>
 	</div>
 </body>
 </html>

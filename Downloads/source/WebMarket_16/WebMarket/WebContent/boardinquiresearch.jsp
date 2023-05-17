@@ -19,9 +19,16 @@
 		form.submit();
 
 	}
+	function UserCheck(event, title) {
+		if (title === "비밀글은 작성자와 관리자만 볼 수 있습니다.") {
+			alert("비밀글은 작성자와 관리자만 볼 수 있습니다.");
+			event.preventDefault(); // 하이퍼링크 클릭 동작 차단
+		}
+
+	}
 	function boardsearch() {
 		var form = document.member;
-		var url = 'boardsearch.jsp?search=' + encodeURIComponent(form.search.value);
+		var url = 'boardinquiresearch.jsp?search=' + encodeURIComponent(form.search.value);
 		location.href = url;
 
 	}
@@ -61,10 +68,12 @@ body>div {
 	int num = 1;
 	List<BoardInfo> boards = new ArrayList<BoardInfo>();
 	String id = (String) session.getAttribute("userId");
-
+	String admin = "root";
+	String search = request.getParameter("search");
 	try {
 
-		pstmt = conn.prepareStatement("select * from board ORDER BY titlenum DESC");
+		pstmt = conn.prepareStatement("SELECT * FROM inquire WHERE title LIKE ? ORDER BY titlenum DESC");
+		pstmt.setString(1, "%" + search + "%");
 		rs = pstmt.executeQuery();
 
 		while (rs.next()) {
@@ -74,7 +83,7 @@ body>div {
 			board.setContent(rs.getString("content"));
 			board.setWriter(rs.getString("writer"));
 			board.setRegisterDateTime(rs.getTimestamp("date").toLocalDateTime());
-			board.setRating(rs.getString("rating"));
+			board.setRating(rs.getString("open"));
 			boards.add(board);
 		}
 		request.setAttribute("boards", boards);
@@ -95,10 +104,11 @@ body>div {
 	}
 	%>
 
+
 	<div class="container">
 		<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
-		<h2>상품 후기</h2>
+		<h2>상품 문의</h2>
 		<%
 		if (id == null) {
 		%>
@@ -121,17 +131,16 @@ body>div {
 		<%
 		}
 		%>
-
 		<%@ include file="boardmenu.jsp"%>
 		<br>
-		<form action="board.jsp" method="post" name="member">
+		<form action="boardinquire.jsp" method="post" name="member">
 			<table class="table table-hover">
 
 				<thead>
 					<tr>
 						<th width="10%">번호</th>
 						<th>제목</th>
-						<th width="10%">별점</th>
+						<th width="10%">공개/비공개</th>
 						<th width="10%">글쓴이</th>
 						<th width="10%">작성일</th>
 					</tr>
@@ -158,11 +167,24 @@ body>div {
 					%>
 					<%
 					for (BoardInfo board : currentBoards) {
+						if (admin.equals(id)) {
+							board.setRating("관리자");
+						}
+						if (board.getWriter().equals(id)) {
+							board.setRating("내글");
+						}
+						if (board.getRating().equals("비공개")) {
+							board.setTitle("비밀글은 작성자와 관리자만 볼 수 있습니다.");
+							board.setWriter("비공개");
+						}
 					%>
 					<tr>
-						<td><a href="./boardshow.jsp?title=<%=board.getNumber()%>"><%=(currentPage - 1) * 10 + num%></a></td>
-						<td><a href="./boardshow.jsp?title=<%=board.getNumber()%>"><%=board.getTitle()%></a></td>
-
+						<td><a
+							href="./boardinquireshow.jsp?title=<%=board.getNumber()%>"
+							onclick="UserCheck(event, '<%=board.getTitle()%>')"><%=(currentPage - 1) * 10 + num%></a></td>
+						<td><a
+							href="./boardinquireshow.jsp?title=<%=board.getNumber()%>"
+							onclick="UserCheck(event, '<%=board.getTitle()%>')"><%=board.getTitle()%></a></td>
 						<td><%=board.getRating()%></td>
 						<td><%=board.getWriter()%></td>
 						<td><%=board.getRegisterDateTime().toLocalDate()%></td>
@@ -183,23 +205,23 @@ body>div {
 			<div style="text-align: center;">
 				<%
 				if (currentPage > 1) {
-					out.print("<a href='boardwrite.jsp?page=" + (currentPage - 1) + "'>&lt; 이전</a>");
+					out.print("<a href='boardinquirewrite.jsp?page=" + (currentPage - 1) + "'>&lt; 이전</a>");
 				}
 				for (int i = 1; i <= totalPageCount; i++) {
 					if (i == currentPage) {
-						out.print("<b><a class='active' href='boardwrite.jsp?page=" + i + "'>" + i + "&nbsp</a></b>");
+						out.print("<b><a class='active' href='boardinquirewrite.jsp?page=" + i + "'>" + i + "&nbsp</a></b>");
 					} else {
-						out.print("<a href='boardwrite.jsp?page=" + i + "'>" + i + "&nbsp</a>");
+						out.print("<a href='boardinquirewrite.jsp?page=" + i + "'>" + i + "&nbsp</a>");
 					}
 				}
 				if (currentPage < totalPageCount) {
-					out.print("<a href='boardwrite.jsp?page=" + (currentPage + 1) + "'>다음 &gt;</a>");
+					out.print("<a href='boardinquirewrite.jsp?page=" + (currentPage + 1) + "'>다음 &gt;</a>");
 				}
 				%>
 			</div>
-			<input type="button" value="검색" onclick="boardsearch()" name="bt"
-				style="float: right;"> <input type="search" id="search" onkeydown="return checkEnter(event)"
-				name="search" style="float: right;">
+				<input type="button" value="검색" onclick="boardsearch()" name="bt"
+					style="float: right;"> <input type="search" id="search" value="<%=search %>" onkeydown="return checkEnter(event)"
+					name="search" style="float: right;">
 			<input type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
 			<input type="hidden" value="<%=id%>" name="id"> <br>
 		</form>

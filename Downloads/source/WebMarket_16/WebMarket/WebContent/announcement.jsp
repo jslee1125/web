@@ -19,6 +19,17 @@
 		form.submit();
 
 	}
+	function boardsearch() {
+		var form = document.member;
+		var url = 'announcementsearch.jsp?search=' + encodeURIComponent(form.search.value);
+		location.href = url;
+
+	}
+	function checkEnter(event) {
+		if (event.keyCode === 13) { // Enter 키의 keyCode는 13입니다.
+			return false;
+		}
+	}
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -84,6 +95,7 @@ body>div {
 	%>
 
 	<div class="container">
+	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
 		<h2>공지사항</h2>
 		<%
@@ -180,19 +192,21 @@ body>div {
 				}
 				%>
 			</div>
+			<input type="button" value="검색" onclick="boardsearch()" name="bt"
+					style="float: right;"> <input type="search" id="search" onkeydown="return checkEnter(event)"
+					name="search" style="float: right;">
 			<%
 			if(admin.equals(id)){
 				
 			%>
-			<p>
-				<input type="hidden" value="<%=id%>" name="id"> <br> <input
-					type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
-			</p>
+			<input type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
+			<input type="hidden" value="<%=id%>" name="id"> <br> 
 			<%
 			}
 			%>
 			<p></p>
 		</form>
+		<p></p>
 	</div>
 </body>
 </html>

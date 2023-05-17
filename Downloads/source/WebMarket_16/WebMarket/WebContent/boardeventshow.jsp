@@ -18,7 +18,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	function goToBoardChange(title, number) {
-		var url = 'announcementchange.jsp?title=' + encodeURIComponent(title)
+		var url = 'boardeventchange.jsp?title=' + encodeURIComponent(title)
 				+ '&number=' + encodeURIComponent(number);
 		location.href = url;
 	}
@@ -105,7 +105,7 @@ body>div {
 			</tr>
 
 		</table>
-		<form action="announcement.jsp" method="post">
+		<form action="boardeventwrite.jsp" method="post">
 				<%
 			if (writer.equals(id)) {
 			%>
