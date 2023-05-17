@@ -107,7 +107,7 @@ body>div {
 		</table>
 		<form action="boardwrite.jsp" method="post">
 			<%
-			if (id.equals(writer)) {
+			if (writer.equals(id)) {
 			%>
 			<button type="button" class="btn btn-default"
 				onclick="goToBoardChange('<%=title%>', '<%=Number%>')">수정</button>
