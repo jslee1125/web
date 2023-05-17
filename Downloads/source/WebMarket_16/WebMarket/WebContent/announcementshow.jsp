@@ -20,28 +20,19 @@
 div {
 	width: 90%;
 }
-
-.star-rating {
-	display: flex;
-	font-size: 30px;
-	line-height: 25px;
-	justify-content: space-around;
-	padding: 0 3px;
-	text-align: center;
-	width: 150px;
+body {
+	background-image: url("img/boardback.jpg"); 
+	background-size: 100% 800px;
+	background-repeat : no-repeat
 }
 
-.star-rating .star {
-	color: gray;
-}
-
-.star-rating .star.checked {
-	color: gold;
+body>div {
+	background-color: white;
 }
 </style>
 </head>
 <body>
-	
+
 	<%
 	request.setCharacterEncoding("utf-8");
 	int Number = Integer.parseInt(request.getParameter("title"));
@@ -83,31 +74,10 @@ div {
 		}
 	}
 	%>
-	<%
-	if (id == null) {
-	%>
-	<div style="text-align: right;">
-		<h4>로그인 하러가기</h4>
-		<h4>
-			<a href="loginpage.jsp">로그인</a>
-		</h4>
-	</div>
-	<%
-	} else {
-	%>
-	<div style="text-align: right;">
-		<h4><%=id%>님
-		</h4>
-		<h4>
-			<a href="boardlogout.jsp">로그아웃</a>
-		</h4>
-	</div>
-	<%
-	}
-	%>
+
 	<div class="container">
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
-		<h2>게시글</h2>
+		<h2>공지사항</h2>
 		<table class="table table-hover" border="1">
 			<tr>
 				<th style="width: 15%; text-align: center;">제목</th>

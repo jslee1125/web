@@ -19,12 +19,12 @@
 		form.submit();
 
 	}
-	function UserCheck(event,title) {
+	function UserCheck(event, title) {
 		if (title === "비밀글은 작성자와 관리자만 볼 수 있습니다.") {
-		    alert("비밀글은 작성자와 관리자만 볼 수 있습니다.");
-		    event.preventDefault(); // 하이퍼링크 클릭 동작 차단
-		  }
-		
+			alert("비밀글은 작성자와 관리자만 볼 수 있습니다.");
+			event.preventDefault(); // 하이퍼링크 클릭 동작 차단
+		}
+
 	}
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,6 +38,16 @@
 div {
 	width: 90%;
 }
+
+body {
+	background-image: url("img/boardback.jpg");
+	background-size: 100% 800px;
+	background-repeat: no-repeat
+}
+
+body>div {
+	background-color: white;
+}
 </style>
 </head>
 <body>
@@ -47,7 +57,7 @@ div {
 	int num = 1;
 	List<BoardInfo> boards = new ArrayList<BoardInfo>();
 	String id = (String) session.getAttribute("userId");
-
+	String admin = "root";
 	try {
 
 		pstmt = conn.prepareStatement("select * from inquire ORDER BY titlenum DESC");
@@ -80,32 +90,33 @@ div {
 		}
 	}
 	%>
-	<%
-	if (id == null) {
-	%>
-	<div style="text-align: right;">
-		<h4>로그인 하러가기</h4>
-		<h4>
-			<a href="loginpage.jsp">로그인</a>
-		</h4>
-	</div>
-	<%
-	} else {
-	%>
-	<div style="text-align: right;">
-		<h4><%=id%>님
-		</h4>
-		<h4>
-			<a href="boardlogout.jsp">로그아웃</a>
-		</h4>
-	</div>
-	<%
-	}
-	%>
+
 
 	<div class="container">
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
 		<h2>상품 문의</h2>
+		<%
+		if (id == null) {
+		%>
+
+		<h4 style="text-align: right;">로그인 하러가기</h4>
+		<h4 style="text-align: right;">
+			<a href="loginpage.jsp">로그인</a>
+		</h4>
+
+		<%
+		} else {
+		%>
+
+		<h4 style="text-align: right;"><%=id%>님
+		</h4>
+		<h4 style="text-align: right;">
+			<a href="boardlogout.jsp">로그아웃</a>
+		</h4>
+
+		<%
+		}
+		%>
 		<%@ include file="boardmenu.jsp"%>
 		<br>
 		<form action="boardinquire.jsp" method="post" name="member">
@@ -142,17 +153,24 @@ div {
 					%>
 					<%
 					for (BoardInfo board : currentBoards) {
-						if(board.getWriter().equals(id)){
+						if (admin.equals(id)) {
+							board.setRating("관리자");
+						}
+						if (board.getWriter().equals(id)) {
 							board.setRating("내글");
 						}
-						if(board.getRating().equals("비공개")){
+						if (board.getRating().equals("비공개")) {
 							board.setTitle("비밀글은 작성자와 관리자만 볼 수 있습니다.");
 							board.setWriter("비공개");
 						}
 					%>
 					<tr>
-						<td><a href="./boardinquireshow.jsp?title=<%=board.getNumber()%>" onclick="UserCheck(event, '<%=board.getTitle()%>')"><%=(currentPage - 1) * 10 + num%></a></td>
-						<td><a href="./boardinquireshow.jsp?title=<%=board.getNumber()%>" onclick="UserCheck(event, '<%=board.getTitle()%>')"><%=board.getTitle()%></a></td>
+						<td><a
+							href="./boardinquireshow.jsp?title=<%=board.getNumber()%>"
+							onclick="UserCheck(event, '<%=board.getTitle()%>')"><%=(currentPage - 1) * 10 + num%></a></td>
+						<td><a
+							href="./boardinquireshow.jsp?title=<%=board.getNumber()%>"
+							onclick="UserCheck(event, '<%=board.getTitle()%>')"><%=board.getTitle()%></a></td>
 						<td><%=board.getRating()%></td>
 						<td><%=board.getWriter()%></td>
 						<td><%=board.getRegisterDateTime().toLocalDate()%></td>

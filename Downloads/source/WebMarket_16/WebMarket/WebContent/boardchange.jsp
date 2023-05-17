@@ -30,7 +30,15 @@
 div {
 	width: 90%;
 }
+body {
+	background-image: url("img/boardback.jpg"); 
+	background-size: 100% 800px;
+	background-repeat : no-repeat
+}
 
+body>div {
+	background-color: white;
+}
 .star-rating {
 	display: flex;
 	flex-direction: row-reverse;

@@ -27,7 +27,15 @@
 div {
 	width: 90%;
 }
+body {
+	background-image: url("img/boardback.jpg"); 
+	background-size: 100% 800px;
+	background-repeat : no-repeat
+}
 
+body>div {
+	background-color: white;
+}
 .star-rating {
 	display: flex;
 	font-size: 30px;
@@ -88,31 +96,6 @@ div {
 		} catch (Exception excep) {
 
 		}
-	}
-	%>
-	<%
-	if (id == null) {
-	%>
-	<div style="text-align: right;">
-		<h4>로그인 하러가기</h4>
-		<h4>
-			<a href="loginpage.jsp">로그인</a>
-		</h4>
-	</div>
-	<%
-	} else {
-	%>
-	<div style="text-align: right;">
-		<h4><%=id%>님
-		</h4>
-		<h4>
-			<a href="boardlogout.jsp">로그아웃</a>
-		</h4>
-	</div>
-	<%
-	}
-	if (id == null) {
-	id = "";
 	}
 	%>
 	<div class="container">

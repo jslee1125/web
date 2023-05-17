@@ -31,6 +31,16 @@
 div {
 	width: 90%;
 }
+
+body {
+	background-image: url("img/boardback.jpg"); 
+	background-size: 100% 800px;
+	background-repeat : no-repeat
+}
+
+body>div {
+	background-color: white;
+}
 </style>
 </head>
 <body>
@@ -40,6 +50,7 @@ div {
 	int num = 1;
 	List<BoardInfo> boards = new ArrayList<BoardInfo>();
 	String id = (String) session.getAttribute("userId");
+	String admin = "root";
 	try {
 
 		pstmt = conn.prepareStatement("select * from announcement ORDER BY titlenum DESC");
@@ -71,35 +82,35 @@ div {
 		}
 	}
 	%>
-	<%
-	if (id == null) {
-	%>
-	<div style="text-align: right;">
-		<h4>로그인 하러가기</h4>
-		<h4>
-			<a href="loginpage.jsp">로그인</a>
-		</h4>
-	</div>
-	<%
-	} else {
-	%>
-	<div style="text-align: right;">
-		<h4><%=id%>님
-		</h4>
-		<h4>
-			<a href="boardlogout.jsp">로그아웃</a>
-		</h4>
-	</div>
-	<%
-	}
-	%>
-	
+
 	<div class="container">
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
 		<h2>공지사항</h2>
+		<%
+		if (id == null) {
+		%>
+
+		<h4 style="text-align: right;">로그인 하러가기</h4>
+		<h4 style="text-align: right;">
+			<a href="loginpage.jsp">로그인</a>
+		</h4>
+
+		<%
+		} else {
+		%>
+
+		<h4 style="text-align: right;"><%=id%>님
+		</h4>
+		<h4 style="text-align: right;">
+			<a href="boardlogout.jsp">로그아웃</a>
+		</h4>
+
+		<%
+		}
+		%>
 		<%@ include file="boardmenu.jsp"%>
 		<br>
-		<form action="board.jsp" method="post" name="member">
+		<form action="announcementwrite.jsp" method="post" name="member">
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -133,8 +144,10 @@ div {
 					for (BoardInfo board : currentBoards) {
 					%>
 					<tr>
-						<td><a href="./announcementshow.jsp?title=<%=board.getNumber()%>"><%=(currentPage - 1) * 10 + num%></a></td>
-						<td><a href="./announcementshow.jsp?title=<%=board.getNumber()%>"><%=board.getTitle()%></a></td>
+						<td><a
+							href="./announcementshow.jsp?title=<%=board.getNumber()%>"><%=(currentPage - 1) * 10 + num%></a></td>
+						<td><a
+							href="./announcementshow.jsp?title=<%=board.getNumber()%>"><%=board.getTitle()%></a></td>
 						<td><%=board.getWriter()%></td>
 						<td><%=board.getRegisterDateTime().toLocalDate()%></td>
 					</tr>
@@ -167,6 +180,17 @@ div {
 				}
 				%>
 			</div>
+			<%
+			if(admin.equals(id)){
+				
+			%>
+			<p>
+				<input type="hidden" value="<%=id%>" name="id"> <br> <input
+					type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
+			</p>
+			<%
+			}
+			%>
 			<p></p>
 		</form>
 	</div>

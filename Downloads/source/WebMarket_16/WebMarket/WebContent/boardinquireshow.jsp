@@ -27,23 +27,14 @@
 div {
 	width: 90%;
 }
-
-.star-rating {
-	display: flex;
-	font-size: 30px;
-	line-height: 25px;
-	justify-content: space-around;
-	padding: 0 3px;
-	text-align: center;
-	width: 150px;
+body {
+	background-image: url("img/boardback.jpg"); 
+	background-size: 100% 800px;
+	background-repeat : no-repeat
 }
 
-.star-rating .star {
-	color: gray;
-}
-
-.star-rating .star.checked {
-	color: gold;
+body>div {
+	background-color: white;
 }
 </style>
 </head>
@@ -88,31 +79,6 @@ div {
 		} catch (Exception excep) {
 
 		}
-	}
-	%>
-	<%
-	if (id == null) {
-	%>
-	<div style="text-align: right;">
-		<h4>로그인 하러가기</h4>
-		<h4>
-			<a href="loginpage.jsp">로그인</a>
-		</h4>
-	</div>
-	<%
-	} else {
-	%>
-	<div style="text-align: right;">
-		<h4><%=id%>님
-		</h4>
-		<h4>
-			<a href="boardlogout.jsp">로그아웃</a>
-		</h4>
-	</div>
-	<%
-	}
-	if (id == null) {
-	id = "";
 	}
 	%>
 	<div class="container">
