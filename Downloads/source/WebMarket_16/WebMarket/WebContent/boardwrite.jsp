@@ -42,7 +42,6 @@
 div {
 	width: 90%;
 }
-
 body {
 	background-image: url("img/boardback.jpg");
 	background-size: 100% 800px;
@@ -52,6 +51,16 @@ body {
 body>div {
 	background-color: white;
 }
+  .container {
+    border: 4px solid #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .container {
+    border: 4px solid #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+  }
 </style>
 </head>
 <body>
@@ -170,7 +179,7 @@ body>div {
 					<%
 					num++;
 					}
-					%>
+					%> 
 					<tr>
 						<td></td>
 						<td></td>

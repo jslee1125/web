@@ -36,6 +36,11 @@ body {
 body>div {
 	background-color: white;
 }
+.container {
+    border: 4px solid #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+  }
 </style>
 </head>
 <body>
@@ -55,7 +60,7 @@ body>div {
 	int num = 1;
 	try {
 
-		pstmt = conn.prepareStatement("select * from announcement where titlenum='" + Number + "'");
+		pstmt = conn.prepareStatement("select * from event where titlenum='" + Number + "'");
 
 		rs = pstmt.executeQuery();
 

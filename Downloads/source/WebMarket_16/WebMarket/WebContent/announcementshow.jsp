@@ -36,6 +36,11 @@ body {
 body>div {
 	background-color: white;
 }
+.container {
+    border: 4px solid #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+  }
 </style>
 </head>
 <body>

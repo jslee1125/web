@@ -52,6 +52,11 @@ body {
 body>div {
 	background-color: white;
 }
+.container {
+    border: 4px solid #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+  }
 </style>
 </head>
 <body>
@@ -61,11 +66,11 @@ body>div {
 	int num = 1;
 	List<BoardInfo> boards = new ArrayList<BoardInfo>();
 	String id = (String) session.getAttribute("userId");
-	String admin = "root";
+	String admin = "admin";
 	String search = request.getParameter("search");
 	try {
 
-		pstmt = conn.prepareStatement("SELECT * FROM announcement WHERE title LIKE ? ORDER BY titlenum DESC");
+		pstmt = conn.prepareStatement("SELECT * FROM event WHERE title LIKE ? ORDER BY titlenum DESC");
 		pstmt.setString(1, "%" + search + "%");
 		rs = pstmt.executeQuery();
 

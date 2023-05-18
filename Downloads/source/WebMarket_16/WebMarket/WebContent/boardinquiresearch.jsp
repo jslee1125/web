@@ -59,6 +59,11 @@ body {
 body>div {
 	background-color: white;
 }
+.container {
+    border: 4px solid #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+  }
 </style>
 </head>
 <body>
@@ -68,7 +73,7 @@ body>div {
 	int num = 1;
 	List<BoardInfo> boards = new ArrayList<BoardInfo>();
 	String id = (String) session.getAttribute("userId");
-	String admin = "root";
+	String admin = "admin";
 	String search = request.getParameter("search");
 	try {
 

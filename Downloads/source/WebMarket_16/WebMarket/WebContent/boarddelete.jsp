@@ -22,7 +22,7 @@
 		target = "inquire";
 	}
 	if(type.equals("3")){
-		target = "announcement";
+		target = "event";
 	}
 	if(type.equals("4")){
 		target = "announcement";
@@ -53,7 +53,7 @@
 		response.sendRedirect("boardinquirewrite.jsp");
 	}
 	if(type.equals("3")){
-		response.sendRedirect("announcement.jsp");
+		response.sendRedirect("boardeventwrite.jsp");
 	}
 	if(type.equals("4")){
 		response.sendRedirect("announcement.jsp");

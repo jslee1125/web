@@ -49,6 +49,11 @@ body>div {
 	text-align: center;
 	width: 150px;
 }
+.container {
+    border: 4px solid #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+  }
 
 .star-rating input {
 	display: none;

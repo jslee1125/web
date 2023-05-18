@@ -52,6 +52,11 @@ body {
 body>div {
 	background-color: white;
 }
+.container {
+    border: 4px solid #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+  }
 </style>
 </head>
 <body>
@@ -61,10 +66,10 @@ body>div {
 	int num = 1;
 	List<BoardInfo> boards = new ArrayList<BoardInfo>();
 	String id = (String) session.getAttribute("userId");
-	String admin = "root";
+	String admin = "admin";
 	try {
 
-		pstmt = conn.prepareStatement("select * from announcement ORDER BY titlenum DESC");
+		pstmt = conn.prepareStatement("select * from event ORDER BY titlenum DESC");
 		rs = pstmt.executeQuery();
 
 		while (rs.next()) {
@@ -200,11 +205,11 @@ body>div {
 				
 			%>
 			<input type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
-			<input type="hidden" value="<%=id%>" name="id"> <br> 
+			<input type="hidden" value="<%=id%>" name="id"> 
 			<%
 			}
 			%>
-			<p></p>
+			<br> <p></p>
 		</form>
 		<p></p>
 	</div>

@@ -20,7 +20,7 @@
 
 	if (writer != null) {
 		try {
-			String sql = "update announcement set content=? where titlenum= ?";
+			String sql = "update event set content=? where titlenum= ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, content);
 			pstmt.setInt(2, number);

@@ -17,7 +17,7 @@
 	String writer = (String) session.getAttribute("userId");
 
 	try {
-		String sql = "insert into announcement (title,content,writer,date) Values(?,?,?,?)";
+		String sql = "insert into event (title,content,writer,date) Values(?,?,?,?)";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, title);
 		pstmt.setString(2, content);
