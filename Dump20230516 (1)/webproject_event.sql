@@ -38,7 +38,7 @@ CREATE TABLE `event` (
 
 LOCK TABLES `event` WRITE;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
-INSERT INTO `event` VALUES (1,'단검 1+1 이벤트','야스오가 따봉합니다','root','2023-05-18 00:35:40.132498'),(2,'철갑옷 900원 인상','광부들이 파업해서 슬퍼','root','2023-05-18 00:36:13.152305'),(4,'ㅁㄴㅇㅁㄴ','ㅁㄴㅇㄴ','admin','2023-05-18 03:38:24.554334');
+INSERT INTO `event` VALUES (1,'단검 1+1 이벤트','야스오가 따봉합니다','admin','2023-05-18 00:35:40.132498'),(2,'철갑옷 900원 인상','광부들이 파업해서 슬퍼','admin','2023-05-18 00:36:13.152305'),(4,'ㅁㄴㅇㅁㄴ','ㅁㄴㅇㄴ','admin','2023-05-18 03:38:24.554334');
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-18 17:03:18
+-- Dump completed on 2023-05-19 10:07:20
