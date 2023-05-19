@@ -44,18 +44,21 @@ div {
 }
 body {
 	background-image: url("img/boardback.jpg");
-	background-size: 100% 800px;
+	background-size: cover 800px;
 	background-repeat: no-repeat
 }
 
 body>div {
 	background-color: white;
 }
-  .container {
-    border: 4px solid #f2f2f2;
-    padding: 10px;
-    border-radius: 5px;
-  }
+td a {
+	text-decoration: none;
+	color: black;
+}
+
+td a:hover {
+	color: blue;
+}
   .container {
     border: 4px solid #f2f2f2;
     padding: 10px;
@@ -111,7 +114,7 @@ body>div {
 		<%
 		if (id == null) {
 		%>
-
+ 
 		<h4 style="text-align: right;">로그인 하러가기</h4>
 		<h4 style="text-align: right;">
 			<a href="loginpage.jsp">로그인</a>

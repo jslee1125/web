@@ -20,7 +20,7 @@ div {
 
 body {
 	background-image: url("img/boardback.jpg");
-	background-size: 100% 800px;
+	background-size: cover 800px;
 	background-repeat: no-repeat
 }
 
@@ -39,9 +39,9 @@ body>div {
 	<div class="container">
 	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
-		<h2>공지 사항</h2>
+		<h2>이벤트</h2>
 		<form action="boardeventsuccess.jsp" method="post">
-
+ 
 			<div class="form-group">
 				<label for="title">제목</label> <input type="text"
 					class="form-control" id="title" placeholder="제목 입력(4-100)"

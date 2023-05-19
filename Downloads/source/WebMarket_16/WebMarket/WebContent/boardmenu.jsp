@@ -20,6 +20,9 @@
     text-decoration: none;
     color: black;
   }
+  .menu th a:hover {
+  color: blue;
+}
 </style>
 
 <table class="menu">

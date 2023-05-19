@@ -28,10 +28,11 @@ div {
 	width: 90%;
 }
 body {
-	background-image: url("img/boardback.jpg"); 
-	background-size: 100% 800px;
-	background-repeat : no-repeat
+	background-image: url("img/boardback.jpg");
+	background-size: cover 800px;
+	background-repeat: no-repeat
 }
+
 
 body>div {
 	background-color: white;
@@ -89,7 +90,7 @@ body>div {
 	<div class="container">
 	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
-		<h2>문의하기</h2>
+		<h2>상품 문의</h2>
 		<table class="table table-hover" border="1">
 			<tr>
 				<th style="width: 15%; text-align: center;">제목</th>

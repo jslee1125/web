@@ -20,9 +20,10 @@ div {
 
 body {
 	background-image: url("img/boardback.jpg");
-	background-size: 100% 800px;
+	background-size: cover 800px;
 	background-repeat: no-repeat
 }
+
 
 body>div {
 	background-color: white;

@@ -44,11 +44,19 @@ div {
 }
 
 body {
-	background-image: url("img/boardback.jpg"); 
-	background-size: 100% 800px;
-	background-repeat : no-repeat
+	background-image: url("img/boardback.jpg");
+	background-size: cover 800px;
+	background-repeat: no-repeat
 }
 
+td a {
+	text-decoration: none;
+	color: black;
+}
+
+td a:hover {
+	color: blue;
+}
 body>div {
 	background-color: white;
 }
@@ -205,10 +213,11 @@ body>div {
 				
 			%>
 			<input type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
-			<input type="hidden" value="<%=id%>" name="id"> 
+			
 			<%
 			}
 			%>
+			<input type="hidden" value="<%=id%>" name="id"> 
 			<br><p></p>
 		</form>
 	</div>

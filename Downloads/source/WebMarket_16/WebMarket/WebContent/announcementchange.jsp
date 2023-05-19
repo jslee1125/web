@@ -33,9 +33,10 @@ div {
 
 body {
 	background-image: url("img/boardback.jpg");
-	background-size: 100% 800px;
+	background-size: cover 800px;
 	background-repeat: no-repeat
 }
+
 
 body>div {
 	background-color: white;
@@ -56,7 +57,7 @@ body>div {
 	%>
 	<div class="container">
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
-		<h2>게시판 글쓰기</h2>
+		<h2>공지사항</h2>
 		<form action="announcementchangesuccess.jsp" method="post">
 			<div class="form-group">
 				<label for="title">제목</label>

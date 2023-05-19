@@ -28,7 +28,8 @@
 	}
 	function boardsearch() {
 		var form = document.member;
-		var url = 'boardinquiresearch.jsp?search=' + encodeURIComponent(form.search.value);
+		var url = 'boardinquiresearch.jsp?search='
+				+ encodeURIComponent(form.search.value);
 		location.href = url;
 
 	}
@@ -52,18 +53,28 @@ div {
 
 body {
 	background-image: url("img/boardback.jpg");
-	background-size: 100% 800px;
+	background-size: cover 800px;
 	background-repeat: no-repeat
+}
+
+td a {
+	text-decoration: none;
+	color: black;
+}
+
+td a:hover {
+	color: blue;
 }
 
 body>div {
 	background-color: white;
 }
+
 .container {
-    border: 4px solid #f2f2f2;
-    padding: 10px;
-    border-radius: 5px;
-  }
+	border: 4px solid #f2f2f2;
+	padding: 10px;
+	border-radius: 5px;
+}
 </style>
 </head>
 <body>
@@ -222,11 +233,12 @@ body>div {
 				}
 				%>
 			</div>
-				<input type="button" value="검색" onclick="boardsearch()" name="bt"
-					style="float: right;"> <input type="search" id="search" onkeydown="return checkEnter(event)"
-					name="search" style="float: right;">
-			<input type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
-			<input type="hidden" value="<%=id%>" name="id"> <br>
+			<input type="button" value="검색" onclick="boardsearch()" name="bt"
+				style="float: right;"> <input type="search" id="search"
+				onkeydown="return checkEnter(event)" name="search"
+				style="float: right;"> <input type="button" value="글쓰기"
+				onclick="LoginCheck()" name="bt"> <input type="hidden"
+				value="<%=id%>" name="id"> <br>
 		</form>
 		<p></p>
 	</div>

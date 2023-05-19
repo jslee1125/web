@@ -44,13 +44,22 @@ div {
 }
 
 body {
-	background-image: url("img/boardback.jpg"); 
-	background-size: 100% 800px;
-	background-repeat : no-repeat
+	background-image: url("img/boardback.jpg");
+	background-size: cover 800px;
+	background-repeat: no-repeat
 }
+
 
 body>div {
 	background-color: white;
+}
+td a {
+	text-decoration: none;
+	color: black;
+}
+
+td a:hover {
+	color: blue;
 }
 .container {
     border: 4px solid #f2f2f2;
@@ -102,7 +111,7 @@ body>div {
 	<div class="container">
 	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
-		<h2>공지사항</h2>
+		<h2>이벤트</h2>
 		<%
 		if (id == null) {
 		%>
@@ -205,10 +214,10 @@ body>div {
 				
 			%>
 			<input type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
-			<input type="hidden" value="<%=id%>" name="id"> 
 			<%
 			}
 			%>
+			<input type="hidden" value="<%=id%>" name="id"> 
 			<br> <p></p>
 		</form>
 		<p></p>
