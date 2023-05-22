@@ -77,17 +77,7 @@ body {
 </head>
 <header class="sticky-header">
 	<p>
-	<div class="d-flex justify-content-around">
-		<div class="menu">
-			<a href="loginpage.jsp">LOGIN</a> <a href="register_code.jsp">JOIN
-				US</a> <a href="cart.jsp">CART</a> <span>MY PAGE</span>
-		</div>
-
-		<div class="menu">
-			<a href="announcement.jsp">공지사항</a> <a href="#">이벤트</a> <a href="#">상품문의</a>
-			<a href="#">상품후기</a> <a href="boardwrite.jsp">게시판</a>
-		</div>
-	</div>
+	<jsp:include page="header.jsp"/>
 
 </header>
 </head>
@@ -106,13 +96,14 @@ body {
 			<p class="my-class">
 				아이디(id): <input type="text" name="id">
 			<p class="my-class">
-				비밀번호(password): <input type="text" name="pw"> <input
+				비밀번호(password): <input type="password" name="pw"> <input
 					class="btn btn-secondary" type="submit" value="확인">
 		</form>
-		<div class="d-flex justify-content-center">
+		<div class="d-flex justify-content-md-center">
 			<form name="registerForm" action="register_code.jsp" method="post">
 				<input class="btn btn-secondary" type="submit" value="회원가입">
 			</form>
+			<div class="mx-2"></div>
 			<form name="findoutForm" action="findout.jsp" method="post">
 				<input class="btn btn-secondary" type="submit" value="회원정보찾기">
 			</form>

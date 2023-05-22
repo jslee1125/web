@@ -2,8 +2,8 @@
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
 <script type="text/javascript">
 function mypage_check(){
-	var sid = <%=session.getAttribute("userId")%>;
-	if(sid == null){
+	var sid ='<%=session.getAttribute("userId")%>';
+	if(sid === "null"){
 		alert("로그인을 해주세요!");
 	}else{
 		location.href = "mypage.jsp";
@@ -11,8 +11,8 @@ function mypage_check(){
 }
 
 function cart_check(){
-	var sid = <%=session.getAttribute("userId")%>;
-	if(sid == null){
+	var sid ='<%=session.getAttribute("userId")%>';
+	if(sid === "null"){
 		alert("로그인을 해주세요!");
 	}else{
 		location.href = "cart.jsp";
@@ -45,10 +45,6 @@ function cart_check(){
 	/*background-color: black;  스크롤 시 배경색 변경 */
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 /
 / 기타 추가 스타일링 */
-}
-
-.my-class {
-	color: #d0a85c;
 }
 
 .menu {
@@ -99,8 +95,8 @@ body {
 		</div>
 
 		<div class="menu">
-			<a href="announcement.jsp">공지사항</a> <a href="#">이벤트</a> <a href="#">상품문의</a>
-			<a href="#">상품후기</a> <a href="boardwrite.jsp">게시판</a>
+			<a href="boardwrite.jsp">상품후기</a><a href="boardinquirewrite.jsp">상품문의</a>
+			<a href="boardeventwrite.jsp">이벤트</a><a href="announcement.jsp">공지사항</a>
 		</div>
 	</div>
 </header>

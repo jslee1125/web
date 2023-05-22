@@ -4,16 +4,21 @@
 <head>
 <link rel ="stylesheet" href ="./resources/css/bootstrap.min.css" />
 <script type ="text/javascript" src ="./resources/js/validation.js"></script>
+<style>
+.font-color{
+color:ffffff;
+}
+</style>
 
 <title>상품 등록</title>	
 </head>
-<body>
+<body class="bg-dark">
+	<jsp:include page="topadminmenu.jsp" />	
 	<fmt:setLocale value='<%= request.getParameter("language") %>'/>
 	<fmt:bundle basename="bundle.message" > 
-	<jsp:include page="menu.jsp" />	
-	<div class="jumbotron">
+	<div class="jumbotron bg-dark">
 		<div class="container">
-			<h1 class="display-3"><fmt:message key="title" /></h1>
+			<h1 class="display-3 font-color"><fmt:message key="title" /></h1>
 		</div>
 	</div>
 	<div class="container">
@@ -21,7 +26,7 @@
 			<a href="?language=ko" >Korean</a>|<a href="?language=en" >English</a>
 			<a href="logout.jsp" class="btn btn-sm btn-success pull-right">logout</a>   
 		</div>	
-		<form name="newProduct" action="./processAddProduct.jsp" class="form-horizontal" method="post" enctype ="multipart/form-data">
+		<form name="newProduct" action="./processAddProduct.jsp" class="form-horizontal font-color" method="post" enctype ="multipart/form-data">
 			<div class="form-group row">
 				<label class="col-sm-2"><fmt:message key="productId" /></label>
 				<div class="col-sm-3">

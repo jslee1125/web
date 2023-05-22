@@ -3,6 +3,14 @@
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
+<style>
+.my-class{
+color: #d0a85c;
+}
+.font-color{
+color:ffffff;
+}
+</style>
 <title>상품 편집</title>
 <script type="text/javascript">
 	function deleteConfirm(id) {
@@ -17,15 +25,15 @@
 	String edit = request.getParameter("edit");
 %>
 </head>
-<body>
-	<jsp:include page="menu.jsp" />
-	<div class="jumbotron">
-		<div class="container">
-			<h1 class="display-3">상품 편집</h1>
+<body class="bg-dark">
+	<jsp:include page="topadminmenu.jsp" />
+	<div class="jumbotron bg-dark">
+		<div class="container bg-dark">
+			<h1 class="display-3 font-color">상품 편집</h1>
 		</div>
 	</div>
 
-	<div class="container">
+	<div class="container bg-dark my-class">
 		<div class="row" align="center">
 			<%@ include file="dbconn.jsp"%>
 			<%

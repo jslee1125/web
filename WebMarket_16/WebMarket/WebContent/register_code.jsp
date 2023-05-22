@@ -8,7 +8,10 @@
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
 <title>Insert title here</title>
 <style type="text/css">
-body {
+.my-class{
+	color:#d0a85c;
+}
+.body {
 	color: #d0a85c;
 }
 
@@ -70,17 +73,6 @@ body {
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
-	window.addEventListener('scroll', function() {
-		var header = document.querySelector('.sticky-header');
-		var scrollPosition = window.scrollY;
-
-		if (scrollPosition > 0) {
-			header.classList.add('is-sticky');
-		} else {
-			header.classList.remove('is-sticky');
-		}
-	});
-	
 	function execDaumPostcode() {
 		new daum.Postcode(
 				{
@@ -239,26 +231,12 @@ function resetOn(){
 }
 </script>
 </head>
-<header class="sticky-header">
-	<p>
-	<div class="d-flex justify-content-around">
-		<div class="menu">
-			<a href="loginpage.jsp">LOGIN</a> <a href="register_code.jsp">JOIN
-				US</a> <a href="cart.jsp">CART</a> <span>MY PAGE</span>
-		</div>
-
-		<div class="menu">
-			<a href="announcement.jsp">공지사항</a> <a href="#">이벤트</a> <a href="#">상품문의</a>
-			<a href="#">상품후기</a> <a href="boardwrite.jsp">게시판</a>
-		</div>
-	</div>
-
-</header>
+<jsp:include page="header.jsp"/>
 <br>
 <br>
 <br>
 <br>
-
+<div class="my-class">
 <form name="frm" method="post" action="register.jsp">
 	<p id="ctxt">
 		<label for="name">이름 <input type="text" name="name"
@@ -350,6 +328,7 @@ function resetOn(){
 					onclick="return check()"> <input class="btn btn-secondary"
 					type="reset" value="다시쓰기" id="resetBtn" onclick="resetOn()">
 </form>
+</div>
 </table>
 <%@ include file="footer.jsp"%>
 </body>

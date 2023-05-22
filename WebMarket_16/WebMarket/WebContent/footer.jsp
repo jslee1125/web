@@ -1,5 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<footer class="container">
+<style>
+.fontcolor1{
+	color:#343a40;
+}
+</style>
+<footer class="container fontcolor1">
 <center>
 	<p>&copy; 2023 Riot Games, Inc. League of Legends and all related logos, characters, names and distinctive likenesses thereof are exclusive property of Riot Games, Inc. All Rights Reserved.
 

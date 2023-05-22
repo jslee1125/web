@@ -9,6 +9,13 @@
 <title>DARIUS</title>
 
 <style type="text/css">
+
+
+.my-class {
+	color: #d0a85c;
+}
+
+
 body {
 	background-color: black;
 }
@@ -19,7 +26,6 @@ body {
 	<%
 	String id = (String) session.getAttribute("userId");
 	%>
-	<hr/>
 	<br>
 	<%
 	if (id != null && id.equals("admin")) {

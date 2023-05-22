@@ -40,13 +40,18 @@
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
+<style>
+.font-color{
+color:ffffff;
+}
+</style>
 <title>주문 정보</title>
 </head>
 <body>
-	<jsp:include page="menu.jsp" />
-	<div class="jumbotron">
+	<jsp:include page="header.jsp" />
+	<div class="jumbotron bg-dark">
 		<div class="container">
-			<h1 class="display-3">주문 정보</h1>
+			<h1 class="display-3 font-color">주문 정보</h1>
 		</div>
 	</div>
 
@@ -100,6 +105,7 @@
 			</table>
 			
 				<a href="./ShippingInfo.jsp?cartId=<%=shipping_cartId%>"class="btn btn-secondary" role="button"> 이전 </a>
+				<a href="./toss.jsp" class="btn btn-primary role="button">토스결제</a>
 				<a href="./thankCustomer.jsp"  class="btn btn-success" role="button"> 주문 완료 </a>
 				<a href="./checkOutCancelled.jsp" class="btn btn-secondary"	role="button"> 취소 </a>			
 		</div>

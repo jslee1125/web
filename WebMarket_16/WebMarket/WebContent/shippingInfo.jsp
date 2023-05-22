@@ -3,16 +3,21 @@
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
+<style>
+.font-color{
+color:ffffff;
+}
+</style>
 <title>배송 정보</title>
 </head>
 <body>
-	<jsp:include page="menu.jsp" />
-	<div class="jumbotron">
+	<jsp:include page="header.jsp" />
+	<div class="jumbotron bg-dark font-color">
 		<div class="container">
 			<h1 class="display-3">배송 정보</h1>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container font-color">
 		<form action="./processShippingInfo.jsp" class="form-horizontal" method="post">
 			<input type="hidden" name="cartId" value="<%=request.getParameter("cartId")%>" />
 			<div class="form-group row">

@@ -8,6 +8,15 @@
 <html>
 <head>
 <link rel ="stylesheet" href ="./resources/css/bootstrap.min.css" />
+<style>
+.my-class {
+	color: #d0a85c;
+}
+.font-color{
+	color:ffffff;
+}
+
+</style>
 <title>상품 상세 정보</title>
 <script type="text/javascript">
 	function addToCart() {
@@ -20,8 +29,9 @@
 </script>
 </head>
 <body>
-	<jsp:include page="menu.jsp" />
-	<div class="jumbotron">
+	<jsp:include page="header.jsp" />
+	<br><br>
+	<div class="jumbotron bg-dark font-color">
 		<div class="container">
 			<h1 class="display-3">상품 정보</h1>
 		</div>
@@ -36,7 +46,7 @@
 		rs = pstmt.executeQuery();
 		while(rs.next()) {
 	%>
-	<div class="container">
+	<div class="container my-class">
 		<div class="row">
 			<div class ="col-md-5">
 				<img src="resources/images/<%=rs.getString("p_fileName")%>" style="width: 100%" />

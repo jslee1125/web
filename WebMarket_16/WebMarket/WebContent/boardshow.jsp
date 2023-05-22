@@ -16,11 +16,26 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	function goToBoardChange(title, number) {
+		var url = 'boardchange.jsp?title=' + encodeURIComponent(title)
+				+ '&number=' + encodeURIComponent(number);
+		location.href = url;
+	}
+</script>
 <style>
 div {
 	width: 90%;
 }
+body {
+	background-image: url("img/boardback.jpg");
+	background-size: cover 800px;
+	background-repeat: no-repeat
+}
 
+body>div {
+	background-color: white;
+}
 .star-rating {
 	display: flex;
 	font-size: 30px;
@@ -30,7 +45,11 @@ div {
 	text-align: center;
 	width: 150px;
 }
-
+.container {
+    border: 4px solid #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+  }
 .star-rating .star {
 	color: gray;
 }
@@ -53,12 +72,12 @@ div {
 	%>
 	<%@ include file="dbconn.jsp"%>
 	<%
-	int num = 1;
+	PreparedStatement stmt = null;;
 	try {
 
-		pstmt = conn.prepareStatement("select * from board where titlenum='" + Number + "'");
+		stmt = conn.prepareStatement("select * from board where titlenum='" + Number + "'");
 
-		rs = pstmt.executeQuery();
+		rs = stmt.executeQuery();
 
 		while (rs.next()) {
 			title = rs.getString("title");
@@ -74,8 +93,8 @@ div {
 		try {
 			if (rs != null)
 		rs.close();
-			if (pstmt != null)
-		pstmt.close();
+			if (stmt != null)
+		stmt.close();
 			if (conn != null)
 		conn.close();
 		} catch (Exception excep) {
@@ -83,34 +102,10 @@ div {
 		}
 	}
 	%>
-	<%
-	if (id == null) {
-	%>
-	<div style="text-align: right;">
-		<h4>로그인 하러가기</h4>
-		<h4>
-			<a href="loginpage.jsp">로그인</a>
-		</h4>
-	</div>
-	<%
-	} else {
-	%>
-	<div style="text-align: right;">
-		<h4><%=id%>님
-		</h4>
-		<h4>
-			<a href="logoutboard.jsp">로그아웃</a>
-		</h4>
-	</div>
-	<%
-	}
-	if(id == null){
-		id="";
-	}
-	%>
 	<div class="container">
+	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
-		<h2>게시글</h2>
+		<h2>상품 후기</h2>
 		<table class="table table-hover" border="1">
 			<tr>
 				<th style="width: 15%; text-align: center;">제목</th>
@@ -143,11 +138,18 @@ div {
 
 		</table>
 		<form action="boardwrite.jsp" method="post">
-		<%if(id.equals(writer)){ %>
-		<button type="button" class="btn btn-default"><a href="boardchange.jsp?title=<%=title%>&number=<%=Number%>">수정 &nbsp</a></button>
-		<%} %>
+			<%
+			if (writer.equals(id)) {
+			%>
+			<button type="button" class="btn btn-default"
+				onclick="goToBoardChange('<%=title%>', '<%=Number%>')">수정</button>
+			<%
+			}
+			%>
 			<button type="submit" class="btn btn-default">뒤로</button>
 		</form>
+		<p></p>
 	</div>
+	
 </body>
 </html>

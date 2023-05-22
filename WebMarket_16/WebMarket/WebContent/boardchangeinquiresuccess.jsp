@@ -15,20 +15,19 @@
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
 	String writer = (String) session.getAttribute("userId");
-	String rating = request.getParameter("rating");
-	if(rating == null){
-		rating = "0";
+	String check = request.getParameter("check");
+	if(check == null){
+		check = "공개";
 	}
 	int number =(int) session.getAttribute("number");
-	int num = 1;
- 
+	 
 
 	if (writer != null) {
 		try {
-			String sql = "update board set content=? ,rating =? where titlenum= ?";
+			String sql = "update inquire set content=? ,open =? where titlenum= ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, content);
-			pstmt.setString(2, rating);
+			pstmt.setString(2, check);
 			pstmt.setInt(3, number);
 			pstmt.executeUpdate();
 
@@ -41,7 +40,7 @@
 		conn.close();
 		}
 	}
-	response.sendRedirect("boardwrite.jsp");
+	response.sendRedirect("boardinquirewrite.jsp");
 	%>
 
 </body>

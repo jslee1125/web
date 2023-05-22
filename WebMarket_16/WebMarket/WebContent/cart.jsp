@@ -2,19 +2,27 @@
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dto.Product"%>
-<%@ page import="dao.ProductRepository"%>
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
+<style>
+
+.fontcolor {
+	color: #ffffff;
+}
+
+</style>
+
 <%
 	String cartId = session.getId();
 	DecimalFormat dFormat = new DecimalFormat("###,###");
 %>
 <title>장바구니</title>
 </head>
-<body>
-	<jsp:include page="menu.jsp" />
-	<div class="jumbotron">
+<body class="bg-dark fontcolor">
+	<jsp:include page="header.jsp" />
+	
+	<div class="jumbotron bg-dark">
 		<div class="container">
 			<h1 class="display-3">장바구니</h1>
 		</div>
@@ -66,7 +74,7 @@
 					<th></th>
 				</tr>
 			</table>
-			<a href="./products.jsp" class="btn btn-secondary"> &laquo; 쇼핑 계속하기</a>
+			<a href="./testmain.jsp" class="btn btn-secondary"> &laquo; 쇼핑 계속하기</a>
 		</div>
 		<hr>
 	</div>
