@@ -15,6 +15,7 @@
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
 	String writer = (String) session.getAttribute("userId");
+	String Page = (String) session.getAttribute("page");
 
 	try {
 		String sql = "insert into announcement (title,content,writer,date) Values(?,?,?,?)";
@@ -34,7 +35,11 @@
 			conn.close();
 	}
 
-	response.sendRedirect("announcement.jsp");
+	if (Page.equals("korea")) {
+		response.sendRedirect("announcement.jsp");
+	} else {
+		response.sendRedirect("announcement_en.jsp");
+	}
 	%>
 
 </body>

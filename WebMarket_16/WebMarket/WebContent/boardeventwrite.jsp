@@ -71,6 +71,7 @@ td a:hover {
 <body>
 	<%@ include file="dbconn.jsp"%>
 	<%
+	session.setAttribute("page", "korea");
 	request.setCharacterEncoding("utf-8");
 	int num = 1;
 	List<BoardInfo> boards = new ArrayList<BoardInfo>();
@@ -111,6 +112,10 @@ td a:hover {
 	<div class="container">
 	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
+		<h4 style="text-align: right;">
+			<a href="boardeventwrite.jsp">korea /</a>
+			<a href="boardeventwrite_en.jsp">english</a>
+		</h4>
 		<h2>이벤트</h2>
 		<%
 		if (id == null) {

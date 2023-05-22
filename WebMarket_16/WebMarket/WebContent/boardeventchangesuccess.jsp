@@ -15,8 +15,8 @@
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
 	String writer = (String) session.getAttribute("userId");
-	int number =(int) session.getAttribute("number");
-	 
+	String Page = (String) session.getAttribute("page");
+	int number = (int) session.getAttribute("number");
 
 	if (writer != null) {
 		try {
@@ -35,7 +35,12 @@
 		conn.close();
 		}
 	}
-	response.sendRedirect("boardeventwrite.jsp");
+
+	if (Page.equals("korea")) {
+		response.sendRedirect("boardeventwrite.jsp");
+	} else {
+		response.sendRedirect("boardeventwrite_en.jsp");
+	}
 	%>
 
 </body>

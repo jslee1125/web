@@ -15,12 +15,11 @@
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
 	String writer = (String) session.getAttribute("userId");
+	String Page = (String) session.getAttribute("page");
 	String check = request.getParameter("check");
-	if(check == null){
+	if (check == null) {
 		check = "공개";
 	}
-	
-	 
 
 	if (writer != null) {
 		try {
@@ -42,7 +41,11 @@
 		conn.close();
 		}
 	}
-	response.sendRedirect("boardinquirewrite.jsp");
+	if (Page.equals("korea")) {
+		response.sendRedirect("boardinquirewrite.jsp");
+	} else {
+		response.sendRedirect("boardinquirewrite_en.jsp");
+	}
 	%>
 
 </body>

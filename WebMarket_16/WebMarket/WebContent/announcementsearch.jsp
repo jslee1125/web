@@ -21,7 +21,8 @@
 	}
 	function boardsearch() {
 		var form = document.member;
-		var url = 'announcementsearch.jsp?search=' + encodeURIComponent(form.search.value);
+		var url = 'announcementsearch.jsp?search='
+				+ encodeURIComponent(form.search.value);
 		location.href = url;
 
 	}
@@ -42,14 +43,17 @@
 div {
 	width: 90%;
 }
+
 body {
 	background-image: url("img/boardback.jpg");
 	background-size: cover 800px;
 	background-repeat: no-repeat
 }
+
 body>div {
 	background-color: white;
 }
+
 td a {
 	text-decoration: none;
 	color: black;
@@ -58,16 +62,18 @@ td a {
 td a:hover {
 	color: blue;
 }
+
 .container {
-    border: 4px solid #f2f2f2;
-    padding: 10px;
-    border-radius: 5px;
-  }
+	border: 4px solid #f2f2f2;
+	padding: 10px;
+	border-radius: 5px;
+}
 </style>
 </head>
 <body>
 	<%@ include file="dbconn.jsp"%>
 	<%
+	session.setAttribute("page", "korea");
 	request.setCharacterEncoding("utf-8");
 	int num = 1;
 	List<BoardInfo> boards = new ArrayList<BoardInfo>();
@@ -79,7 +85,6 @@ td a:hover {
 		pstmt = conn.prepareStatement("SELECT * FROM announcement WHERE title LIKE ? ORDER BY titlenum DESC");
 		pstmt.setString(1, "%" + search + "%");
 		rs = pstmt.executeQuery();
-
 
 		while (rs.next()) {
 			BoardInfo board = new BoardInfo();
@@ -109,8 +114,11 @@ td a:hover {
 	%>
 
 	<div class="container">
-	<p></p>
+		<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
+		<h4 style="text-align: right;">
+			<a href="announcement.jsp">korea /</a> <a href="announcement_en.jsp">english</a>
+		</h4>
 		<h2>공지사항</h2>
 		<%
 		if (id == null) {
@@ -207,18 +215,18 @@ td a:hover {
 				%>
 			</div>
 			<input type="button" value="검색" onclick="boardsearch()" name="bt"
-					style="float: right;"> <input type="search" id="search" value="<%=search %>" onkeydown="return checkEnter(event)"
-					name="search" style="float: right;">
+				style="float: right;"> <input type="search" id="search"
+				value="<%=search%>" onkeydown="return checkEnter(event)"
+				name="search" style="float: right;">
 			<%
-			if(admin.equals(id)){
-				
+			if (admin.equals(id)) {
 			%>
 			<input type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
-			
+
 			<%
 			}
 			%>
-			<input type="hidden" value="<%=id%>" name="id"> <br> 
+			<input type="hidden" value="<%=id%>" name="id"> <br>
 			<p></p>
 		</form>
 	</div>

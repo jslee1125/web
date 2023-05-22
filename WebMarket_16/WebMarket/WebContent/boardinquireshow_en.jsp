@@ -18,7 +18,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	function goToBoardChange(title, number) {
-		var url = 'boardchange.jsp?title=' + encodeURIComponent(title)
+		var url = 'boardinquirechange_en.jsp?title=' + encodeURIComponent(title)
 				+ '&number=' + encodeURIComponent(number);
 		location.href = url;
 	}
@@ -33,42 +33,26 @@ body {
 	background-repeat: no-repeat
 }
 
+
 body>div {
 	background-color: white;
-}
-.star-rating {
-	display: flex;
-	font-size: 30px;
-	line-height: 25px;
-	justify-content: space-around;
-	padding: 0 3px;
-	text-align: center;
-	width: 150px;
 }
 .container {
     border: 4px solid #f2f2f2;
     padding: 10px;
     border-radius: 5px;
   }
-.star-rating .star {
-	color: gray;
-}
-
-.star-rating .star.checked {
-	color: gold;
-}
 </style>
 </head>
 <body>
 	<%
 	request.setCharacterEncoding("utf-8");
-	session.setAttribute("page", "korea");
 	int Number = Integer.parseInt(request.getParameter("title"));
 	String id = (String) session.getAttribute("userId");
 	String title = "";
 	String content = "";
 	String writer = "";
-	int ratingValue = 0;
+	String ratingValue = "";
 	LocalDateTime date = LocalDateTime.now();
 	%>
 	<%@ include file="dbconn.jsp"%>
@@ -76,7 +60,7 @@ body>div {
 	PreparedStatement stmt = null;;
 	try {
 
-		stmt = conn.prepareStatement("select * from board where titlenum='" + Number + "'");
+		stmt = conn.prepareStatement("select * from inquire where titlenum='" + Number + "'");
 
 		rs = stmt.executeQuery();
 
@@ -84,7 +68,7 @@ body>div {
 			title = rs.getString("title");
 			content = rs.getString("content");
 			writer = rs.getString("writer");
-			ratingValue = Integer.parseInt(rs.getString("rating"));
+			ratingValue = rs.getString("open");
 			date = rs.getTimestamp("date").toLocalDateTime();
 		}
 
@@ -106,51 +90,40 @@ body>div {
 	<div class="container">
 	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
-		<h2>상품 후기</h2>
+		<h2>inquire</h2>
 		<table class="table table-hover" border="1">
 			<tr>
-				<th style="width: 15%; text-align: center;">제목</th>
+				<th style="width: 15%; text-align: center;">title</th>
 				<th><%=title%></th>
 			</tr>
 			<tr>
-				<th style="text-align: center;">글쓴이</th>
+				<th style="text-align: center;">writer</th>
 				<th><%=writer%></th>
 			</tr>
 			<tr>
-				<th style="text-align: center;">내용</th>
+				<th style="text-align: center;">content</th>
 				<th style="height: 200px;"><%=content%></th>
 			</tr>
 			<tr>
-				<th style="text-align: center;">별점</th>
-				<th>
-					<div class="star-rating">
-						<span class="star <%=ratingValue >= 1 ? "checked" : ""%>">&#9733;</span>
-						<span class="star <%=ratingValue >= 2 ? "checked" : ""%>">&#9733;</span>
-						<span class="star <%=ratingValue >= 3 ? "checked" : ""%>">&#9733;</span>
-						<span class="star <%=ratingValue >= 4 ? "checked" : ""%>">&#9733;</span>
-						<span class="star <%=ratingValue >= 5 ? "checked" : ""%>">&#9733;</span>
-					</div>
-				</th>
 			</tr>
 			<tr>
-				<th style="text-align: center;">작성일</th>
+				<th style="text-align: center;">date</th>
 				<th style="text-align: center;"><%=date.toLocalDate()%></th>
 			</tr>
 
 		</table>
-		<form action="boardwrite.jsp" method="post">
+		<form action="boardinquirewrite_en.jsp" method="post">
 			<%
 			if (writer.equals(id)) {
 			%>
 			<button type="button" class="btn btn-default"
-				onclick="goToBoardChange('<%=title%>', '<%=Number%>')">수정</button>
+				onclick="goToBoardChange('<%=title%>', '<%=Number%>')">change</button>
 			<%
 			}
 			%>
-			<button type="submit" class="btn btn-default">뒤로</button>
+			<button type="submit" class="btn btn-default">back</button>
 		</form>
 		<p></p>
 	</div>
-	
 </body>
 </html>

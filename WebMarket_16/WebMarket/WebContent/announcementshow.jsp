@@ -27,19 +27,22 @@
 div {
 	width: 90%;
 }
+
 body {
 	background-image: url("img/boardback.jpg");
 	background-size: cover 800px;
 	background-repeat: no-repeat
 }
+
 body>div {
 	background-color: white;
 }
+
 .container {
-    border: 4px solid #f2f2f2;
-    padding: 10px;
-    border-radius: 5px;
-  }
+	border: 4px solid #f2f2f2;
+	padding: 10px;
+	border-radius: 5px;
+}
 </style>
 </head>
 <body>
@@ -87,7 +90,7 @@ body>div {
 	%>
 
 	<div class="container">
-	<p></p>
+		<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
 		<h2>공지사항</h2>
 		<table class="table table-hover" border="1">
@@ -110,7 +113,7 @@ body>div {
 
 		</table>
 		<form action="announcement.jsp" method="post">
-				<%
+			<%
 			if (writer.equals(id)) {
 			%>
 			<button type="button" class="btn btn-default"

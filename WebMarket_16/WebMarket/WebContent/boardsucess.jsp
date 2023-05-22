@@ -15,12 +15,12 @@
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
 	String writer = (String) session.getAttribute("userId");
+	String Page = (String) session.getAttribute("page");
 	String rating = request.getParameter("rating");
-	if(rating == null){
+
+	if (rating == null) {
 		rating = "0";
 	}
-	
-	 
 
 	if (writer != null) {
 		try {
@@ -42,7 +42,11 @@
 		conn.close();
 		}
 	}
-	response.sendRedirect("boardwrite.jsp");
+	if (Page.equals("korea")) {
+		response.sendRedirect("boardwrite.jsp");
+	} else {
+		response.sendRedirect("boardwrite_en.jsp");
+	}
 	%>
 
 </body>

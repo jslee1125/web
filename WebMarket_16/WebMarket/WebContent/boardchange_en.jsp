@@ -15,13 +15,13 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 function DeleteCheck(number, type) {
-	if (confirm("삭제하시겠습니까?")) {
+	if (confirm("do you want delete?")) {
 		var url = "boarddelete.jsp?number=" + number + "&type=" + type;
 		window.location.href = url;
 		return true; // 하이퍼링크를 계속 따라갑니다.
 	} else {
 		// 아니오를 선택한 경우 실행할 동작
-		alert("삭제가 취소되었습니다.");
+		alert("delete cancel");
 		return false; // 하이퍼링크를 따라가지 않습니다.
 	}
 }
@@ -30,7 +30,6 @@ function DeleteCheck(number, type) {
 div {
 	width: 90%;
 }
-
 body {
 	background-image: url("img/boardback.jpg");
 	background-size: cover 800px;
@@ -40,11 +39,32 @@ body {
 body>div {
 	background-color: white;
 }
-
+.star-rating {
+	display: flex;
+	flex-direction: row-reverse;
+	font-size: 32px;
+	line-height: 40px;
+	justify-content: space-around;
+	padding: 0 3px;
+	text-align: center;
+	width: 150px;
+}
 .container {
-	border: 4px solid #f2f2f2;
-	padding: 10px;
-	border-radius: 5px;
+    border: 4px solid #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+.star-rating input {
+	display: none;
+}
+
+.star-rating :checked ~ label {
+	-webkit-text-fill-color: gold;
+}
+
+.star-rating label:hover, .star-rating label:hover ~ label {
+	-webkit-text-fill-color: #fff58c;
 }
 </style>
 </head>
@@ -57,27 +77,39 @@ body>div {
 	%>
 	<div class="container">
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
-		<h2>공지사항</h2>
-		<form action="announcementchangesuccess.jsp" method="post">
+		<h2>reviews</h2>
+		<form action="boardchangesuccess.jsp" method="post">
 			<div class="form-group">
-				<label for="title">제목</label> <input type="text"
+				<label for="title">title</label> <input type="text"
 					class="form-control" id="title" value="<%=title%>" name="title"
 					maxlength="100" required="required" pattern=".{4,100}" readonly>
 			</div>
 			<div class="form-group">
-				<label for="content">내용</label>
+				<label for="content">content</label>
 				<textarea class="form-control" rows="5" id="content" name="content"
 					placeholder="내용 작성" style="resize: none;"></textarea>
 			</div>
 			<p>
+
+				<label for="writer">rating</label>
+			<div class="star-rating">
+				<input type="radio" id="5-stars" name="rating" value="5" /> <label
+					for="5-stars" class="star">&#9733;</label> <input type="radio"
+					id="4-stars" name="rating" value="4" /> <label for="4-stars"
+					class="star">&#9733;</label> <input type="radio" id="3-stars"
+					name="rating" value="3" /> <label for="3-stars" class="star">&#9733;</label>
+				<input type="radio" id="2-stars" name="rating" value="2" /> <label
+					for="2-stars" class="star">&#9733;</label> <input type="radio"
+					id="1-star" name="rating" value="1" /> <label for="1-star"
+					class="star">&#9733;</label>
+			</div>
 			<p></p>
-			<button type="submit" class="btn btn-default">등록</button>
-			<button type="button" class="btn btn-default"
-				onclick="DeleteCheck(<%=number%>, 4)">삭제</button>
+			<button type="submit" class="btn btn-default">submit</button>
+			<button type="button" class="btn btn-default" onclick="DeleteCheck(<%=number%>, 1)">delete</button>
 		</form>
 		<p>
-		<form action="announcement.jsp" method="post">
-			<button type="submit" class="btn btn-default">취소</button>
+		<form action="boardwrite_en.jsp" method="post">
+			<button type="submit" class="btn btn-default">cancel</button>
 		</form>
 		<p></p>
 	</div>
