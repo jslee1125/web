@@ -2,8 +2,8 @@
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
 <script type="text/javascript">
 function mypage_check(){
-	var sid = <%=session.getAttribute("userId")%>;
-	if(sid == null){
+	var sid ='<%=session.getAttribute("userId")%>';
+	if(sid === "null"){
 		alert("로그인을 해주세요!");
 	}else{
 		location.href = "mypage.jsp";
@@ -11,8 +11,8 @@ function mypage_check(){
 }
 
 function cart_check(){
-	var sid = <%=session.getAttribute("userId")%>;
-	if(sid == null){
+	var sid ='<%=session.getAttribute("userId")%>';
+	if(sid === "null"){
 		alert("로그인을 해주세요!");
 	}else{
 		location.href = "cart.jsp";
