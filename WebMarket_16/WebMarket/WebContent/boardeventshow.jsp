@@ -18,7 +18,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	function goToBoardChange(title, number) {
-		var url = 'announcementchange.jsp?title=' + encodeURIComponent(title)
+		var url = 'boardeventchange.jsp?title=' + encodeURIComponent(title)
 				+ '&number=' + encodeURIComponent(number);
 		location.href = url;
 	}
@@ -32,6 +32,7 @@ body {
 	background-size: cover 800px;
 	background-repeat: no-repeat
 }
+
 body>div {
 	background-color: white;
 }
@@ -59,7 +60,7 @@ body>div {
 	int num = 1;
 	try {
 
-		pstmt = conn.prepareStatement("select * from announcement where titlenum='" + Number + "'");
+		pstmt = conn.prepareStatement("select * from event where titlenum='" + Number + "'");
 
 		rs = pstmt.executeQuery();
 
@@ -89,7 +90,7 @@ body>div {
 	<div class="container">
 	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
-		<h2>공지사항</h2>
+		<h2>이벤트</h2>
 		<table class="table table-hover" border="1">
 			<tr>
 				<th style="width: 15%; text-align: center;">제목</th>
@@ -109,7 +110,7 @@ body>div {
 			</tr>
 
 		</table>
-		<form action="announcement.jsp" method="post">
+		<form action="boardeventwrite.jsp" method="post">
 				<%
 			if (writer.equals(id)) {
 			%>

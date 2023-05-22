@@ -18,7 +18,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	function goToBoardChange(title, number) {
-		var url = 'announcementchange.jsp?title=' + encodeURIComponent(title)
+		var url = 'boardinquirechange.jsp?title=' + encodeURIComponent(title)
 				+ '&number=' + encodeURIComponent(number);
 		location.href = url;
 	}
@@ -32,6 +32,8 @@ body {
 	background-size: cover 800px;
 	background-repeat: no-repeat
 }
+
+
 body>div {
 	background-color: white;
 }
@@ -43,7 +45,6 @@ body>div {
 </style>
 </head>
 <body>
-
 	<%
 	request.setCharacterEncoding("utf-8");
 	int Number = Integer.parseInt(request.getParameter("title"));
@@ -51,22 +52,23 @@ body>div {
 	String title = "";
 	String content = "";
 	String writer = "";
-	int ratingValue = 0;
+	String ratingValue = "";
 	LocalDateTime date = LocalDateTime.now();
 	%>
 	<%@ include file="dbconn.jsp"%>
 	<%
-	int num = 1;
+	PreparedStatement stmt = null;;
 	try {
 
-		pstmt = conn.prepareStatement("select * from announcement where titlenum='" + Number + "'");
+		stmt = conn.prepareStatement("select * from inquire where titlenum='" + Number + "'");
 
-		rs = pstmt.executeQuery();
+		rs = stmt.executeQuery();
 
 		while (rs.next()) {
 			title = rs.getString("title");
 			content = rs.getString("content");
 			writer = rs.getString("writer");
+			ratingValue = rs.getString("open");
 			date = rs.getTimestamp("date").toLocalDateTime();
 		}
 
@@ -76,8 +78,8 @@ body>div {
 		try {
 			if (rs != null)
 		rs.close();
-			if (pstmt != null)
-		pstmt.close();
+			if (stmt != null)
+		stmt.close();
 			if (conn != null)
 		conn.close();
 		} catch (Exception excep) {
@@ -85,11 +87,10 @@ body>div {
 		}
 	}
 	%>
-
 	<div class="container">
 	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
-		<h2>공지사항</h2>
+		<h2>상품 문의</h2>
 		<table class="table table-hover" border="1">
 			<tr>
 				<th style="width: 15%; text-align: center;">제목</th>
@@ -104,13 +105,15 @@ body>div {
 				<th style="height: 200px;"><%=content%></th>
 			</tr>
 			<tr>
+			</tr>
+			<tr>
 				<th style="text-align: center;">작성일</th>
 				<th style="text-align: center;"><%=date.toLocalDate()%></th>
 			</tr>
 
 		</table>
-		<form action="announcement.jsp" method="post">
-				<%
+		<form action="boardinquirewrite.jsp" method="post">
+			<%
 			if (writer.equals(id)) {
 			%>
 			<button type="button" class="btn btn-default"

@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="header.jsp" />
 <meta charset="utf-8">
 
 <title>게시판 글쓰기</title>
@@ -20,6 +19,17 @@
 		form.submit();
 
 	}
+	function boardsearch() {
+		var form = document.member;
+		var url = 'announcementsearch.jsp?search=' + encodeURIComponent(form.search.value);
+		location.href = url;
+
+	}
+	function checkEnter(event) {
+		if (event.keyCode === 13) { // Enter 키의 keyCode는 13입니다.
+			return false;
+		}
+	}
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -32,6 +42,29 @@
 div {
 	width: 90%;
 }
+
+body {
+	background-image: url("img/boardback.jpg");
+	background-size: cover 800px;
+	background-repeat: no-repeat
+}
+
+td a {
+	text-decoration: none;
+	color: black;
+}
+
+td a:hover {
+	color: blue;
+}
+body>div {
+	background-color: white;
+}
+.container {
+    border: 4px solid #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+  }
 </style>
 </head>
 <body>
@@ -41,6 +74,7 @@ div {
 	int num = 1;
 	List<BoardInfo> boards = new ArrayList<BoardInfo>();
 	String id = (String) session.getAttribute("userId");
+	String admin = "admin";
 	try {
 
 		pstmt = conn.prepareStatement("select * from announcement ORDER BY titlenum DESC");
@@ -72,35 +106,36 @@ div {
 		}
 	}
 	%>
-	<%
-	if (id == null) {
-	%>
-	<div style="text-align: right;">
-		<h4>로그인 하러가기</h4>
-		<h4>
-			<a href="loginpage.jsp">로그인</a>
-		</h4>
-	</div>
-	<%
-	} else {
-	%>
-	<div style="text-align: right;">
-		<h4><%=id%>님
-		</h4>
-		<h4>
-			<a href="logoutboard.jsp">로그아웃</a>
-		</h4>
-	</div>
-	<%
-	}
-	%>
-	
+
 	<div class="container">
+	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
 		<h2>공지사항</h2>
+		<%
+		if (id == null) {
+		%>
+
+		<h4 style="text-align: right;">로그인 하러가기</h4>
+		<h4 style="text-align: right;">
+			<a href="loginpage.jsp">로그인</a>
+		</h4>
+
+		<%
+		} else {
+		%>
+
+		<h4 style="text-align: right;"><%=id%>님
+		</h4>
+		<h4 style="text-align: right;">
+			<a href="boardlogout.jsp">로그아웃</a>
+		</h4>
+
+		<%
+		}
+		%>
 		<%@ include file="boardmenu.jsp"%>
 		<br>
-		<form action="board.jsp" method="post" name="member">
+		<form action="announcementwrite.jsp" method="post" name="member">
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -134,8 +169,10 @@ div {
 					for (BoardInfo board : currentBoards) {
 					%>
 					<tr>
-						<td><a href="./announcementshow.jsp?title=<%=board.getNumber()%>"><%=(currentPage - 1) * 10 + num%></a></td>
-						<td><a href="./announcementshow.jsp?title=<%=board.getNumber()%>"><%=board.getTitle()%></a></td>
+						<td><a
+							href="./announcementshow.jsp?title=<%=board.getNumber()%>"><%=(currentPage - 1) * 10 + num%></a></td>
+						<td><a
+							href="./announcementshow.jsp?title=<%=board.getNumber()%>"><%=board.getTitle()%></a></td>
 						<td><%=board.getWriter()%></td>
 						<td><%=board.getRegisterDateTime().toLocalDate()%></td>
 					</tr>
@@ -168,7 +205,20 @@ div {
 				}
 				%>
 			</div>
-			<p></p>
+			<input type="button" value="검색" onclick="boardsearch()" name="bt"
+					style="float: right;"> <input type="search" id="search" onkeydown="return checkEnter(event)"
+					name="search" style="float: right;">
+			<%
+			if(admin.equals(id)){
+				
+			%>
+			<input type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
+			
+			<%
+			}
+			%>
+			<input type="hidden" value="<%=id%>" name="id"> 
+			<br><p></p>
 		</form>
 	</div>
 </body>

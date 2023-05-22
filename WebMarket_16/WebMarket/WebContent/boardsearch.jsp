@@ -42,6 +42,7 @@
 div {
 	width: 90%;
 }
+
 body {
 	background-image: url("img/boardback.jpg");
 	background-size: cover 800px;
@@ -59,7 +60,7 @@ td a {
 td a:hover {
 	color: blue;
 }
-  .container {
+.container {
     border: 4px solid #f2f2f2;
     padding: 10px;
     border-radius: 5px;
@@ -73,10 +74,12 @@ td a:hover {
 	int num = 1;
 	List<BoardInfo> boards = new ArrayList<BoardInfo>();
 	String id = (String) session.getAttribute("userId");
+	String search = request.getParameter("search");
 
 	try {
 
-		pstmt = conn.prepareStatement("select * from board ORDER BY titlenum DESC");
+		pstmt = conn.prepareStatement("SELECT * FROM board WHERE title LIKE ? ORDER BY titlenum DESC");
+		pstmt.setString(1, "%" + search + "%");
 		rs = pstmt.executeQuery();
 
 		while (rs.next()) {
@@ -114,7 +117,7 @@ td a:hover {
 		<%
 		if (id == null) {
 		%>
- 
+
 		<h4 style="text-align: right;">로그인 하러가기</h4>
 		<h4 style="text-align: right;">
 			<a href="loginpage.jsp">로그인</a>
@@ -182,7 +185,7 @@ td a:hover {
 					<%
 					num++;
 					}
-					%> 
+					%>
 					<tr>
 						<td></td>
 						<td></td>
@@ -210,7 +213,7 @@ td a:hover {
 				%>
 			</div>
 			<input type="button" value="검색" onclick="boardsearch()" name="bt"
-				style="float: right;"> <input type="search" id="search" onkeydown="return checkEnter(event)"
+				style="float: right;"> <input type="search" id="search" value="<%=search %>" onkeydown="return checkEnter(event)"
 				name="search" style="float: right;">
 			<input type="button" value="글쓰기" onclick="LoginCheck()" name="bt">
 			<input type="hidden" value="<%=id%>" name="id"> <br>
