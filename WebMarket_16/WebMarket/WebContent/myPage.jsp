@@ -7,19 +7,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="header.jsp" />
 <script type="text/javascript">
 function edit(){
 	let editO = document.getElementById('submitBtn');
 	let inputPw = document.getElementById('pw');
 	let inputLocation =document.getElementById('location');
-	 inputPw.style.backgroundColor = 'yellow';
 /* 	 inputLocation.style.backgroundColor ='yellow'; */	
 	if(editO){
+	    inputPw.style.backgroundColor = 'yellow';
 		inputLocation.removeAttribute("readonly");
 		inputPw.removeAttribute("readonly");
 		document.getElementById('confirmBtn').style.display = 'inline-block';
 		 window.open('editPw.jsp','','300','200');
+			
+		 window.opener.document.getElementById('pw').value 
+			= window.document.getElementById('pw').value;
+			document.editForm.submit();
+	
 	}
 }
 
@@ -28,11 +32,14 @@ function edit(){
 <%
 request.setCharacterEncoding("utf-8");
 String id = request.getParameter("id");
+String pw = request.getParameter("pw");
+PreparedStatement pstmt = null;
+ResultSet rs = null;
 try {
     pstmt = conn.prepareStatement("SELECT * FROM projectdata WHERE id = ?");
     pstmt.setString(1, id);
     rs = pstmt.executeQuery();
-    if(rs.next()){
+    if(rs.next() && rs.getString("id").equals(id)&& rs.getString("pw").equals(pw)){
 	String Dbname = rs.getString("name");
 	String Dbid = rs.getString("id");
 	String Dbpw = rs.getString("pw");
@@ -44,12 +51,14 @@ try {
 	String Dbphone = rs.getString("phone");
 	String Dbgrade = rs.getString("grade");
 	
+	session.setAttribute("DBid", Dbid);
+	session.setAttribute("DBpw", Dbpw);
 %>       
  <h1>나의 정보 보기</h1>
  <hr color = "blue";>
  
-
  <table>
+<form name="editForm" method="post">
   <tr>
     <td>이름:</td>
     <td><input type="text" name="name" id="name" value="<%=Dbname %>" readonly size = "55px"></td>
@@ -101,6 +110,14 @@ try {
  
  
  <%
+    }else{
+ %>
+    	<script>
+    	alert("비밀번호를 다시 입력해주세요.");
+    	history.go(-1);
+    	
+    	</script>
+ <% 
     }
 
 } catch (Exception e) {
