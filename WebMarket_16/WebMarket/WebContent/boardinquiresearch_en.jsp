@@ -190,6 +190,10 @@ td a:hover {
 						if (board.getRating().equals("비공개")) {
 							board.setTitle("Secret posts can only be viewed by the author and administrator.");
 							board.setWriter("private");
+							board.setRating("private");
+						}
+						if (board.getRating().equals("공개")) {
+							board.setRating("public");
 						}
 					%>
 					<tr>

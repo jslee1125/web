@@ -4,7 +4,7 @@
 function mypage_check(){
 	var sid ='<%=session.getAttribute("userId")%>';
 	if(sid === "null"){
-		alert("로그인을 해주세요!");
+		alert("please use after login!");
 	}else{
 		location.href = "mypage.jsp";
 	}
@@ -13,9 +13,9 @@ function mypage_check(){
 function cart_check(){
 	var sid ='<%=session.getAttribute("userId")%>';
 	if(sid === "null"){
-		alert("로그인을 해주세요!");
+		alert("please use after login!");
 	}else{
-		location.href = "cart.jsp";
+		location.href = "cart_en.jsp";
 	}
 }
 	window.addEventListener('scroll', function() {
@@ -77,7 +77,8 @@ body {
   border: none;
   border-radius: 4px;
   font-size: 16px;
-  
+  cursor: pointer;
+}
 </style>
 <header class="sticky-header">
 	<p>
@@ -105,9 +106,9 @@ body {
 		</div>
 
 		<div class="menu">
-			<a href="boardwrite.jsp">상품후기</a><a href="boardinquirewrite.jsp">상품문의</a>
-			<a href="boardeventwrite.jsp">이벤트</a><a href="announcement.jsp">공지사항</a>
-			<a href="testmain_en.jsp" class="button">english</a>
+			<a href="boardwrite_en.jsp">reviews</a><a href="boardinquirewrite_en.jsp">inquire</a>
+			<a href="boardeventwrite_en.jsp">event</a><a href="announcement_en.jsp">announcemet</a>
+			<a href="testmain.jsp" class="button">korea</a>
 		</div>
 	</div>
 </header>
