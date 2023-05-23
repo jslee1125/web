@@ -27,7 +27,7 @@
 
 <table class="menu">
   <tr>
-    <th><a href="testmain.jsp">Home</a></th>
+    <th><a href="testmain_en.jsp">Home</a></th>
     <th><a href="boardwrite_en.jsp">reviews</a></th>
     <th><a href="boardinquirewrite_en.jsp">inquire</a></th>
     <th><a href="boardeventwrite_en.jsp">event</a></th>
