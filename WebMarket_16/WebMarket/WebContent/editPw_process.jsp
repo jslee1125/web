@@ -18,11 +18,15 @@
 	String Dbpw = (String)session.getAttribute("DBpw"); */
 	if (pw.equals(edit_pw)) {
 	%>
-	<script src="alert.js"></script> 
+	<script src="alert.js">
+	 window.opener.document.getElementById('pw').value = ""; 
+	</script> 
 	<%
-	}else{
-		
-	PreparedStatement pstmt = null;
+	}else{ 
+		%>
+		<script src ="exception.js"> 
+		</script>
+		<%
 	try {
 		pstmt = conn.prepareStatement("Update projectdata SET pw =?  WHERE pw=? AND id=?");
 		pstmt.setString(1, edit_pw);

@@ -21,13 +21,13 @@ try {
   
 
   if (rs.next() && rs.getString("id").equals(id) && rs.getString("pw").equals(pw)) {
-    // 로그인 성공
+    // 로그인 성공 & 세션 저장
     session.setAttribute("userId", id);
     session.setAttribute("userPw", pw);
 	response.sendRedirect("testmain.jsp");
   } else {
     // 로그인 실패
-    out.println("로그인 실패");
+    response.sendRedirect("login_failed.jsp");
   }
 } catch (Exception e) {
   out.println("로그인 처리 중 오류가 발생하였습니다.");
