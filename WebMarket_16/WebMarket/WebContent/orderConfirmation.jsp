@@ -3,10 +3,14 @@
 <%@ page import="java.net.URLDecoder"%>
 <%@ page import="dto.Product"%>
 <%@ page import="dao.ProductRepository"%>
+<%@ page import="model.*"%>
+<%@ page import="java.util.*"%>
+<%@ include file="dbconn.jsp"%>
 <%@ page import="java.text.DecimalFormat" %>
 
 <%
 	request.setCharacterEncoding("UTF-8");
+	String id = (String) session.getAttribute("userId");	
 
 	String cartId = session.getId();
 	DecimalFormat dFormat = new DecimalFormat("###,###");
@@ -36,6 +40,31 @@
 				shipping_zipCode = URLDecoder.decode((thisCookie.getValue()), "utf-8");
 			if (n.equals("Shipping_addressName"))
 				shipping_addressName = URLDecoder.decode((thisCookie.getValue()), "utf-8");
+		}
+	}
+	int balance = 0;
+
+	try {
+
+		pstmt = conn.prepareStatement("select * from projectdata where id = '" + id + "'");
+		rs = pstmt.executeQuery();
+
+		if (rs.next()) {
+			balance = Integer.parseInt(rs.getString("balance"));
+		}
+
+	} catch (Exception excep) {
+		excep.printStackTrace();
+	} finally {
+		try {
+			if (rs != null)
+		rs.close();
+			if (pstmt != null)
+		pstmt.close();
+			if (conn != null)
+		conn.close();
+		} catch (Exception excep) {
+
 		}
 	}
 %>
@@ -106,11 +135,26 @@ color:ffffff;
 			</tr>
 			</table>
 			
-				<a href="./cart.jsp"class="btn btn-secondary" role="button"> 이전 </a>
-				<a href="./toss.jsp" class="btn btn-primary role="button">토스결제</a>
-				<a href="./thankCustomer.jsp"  class="btn btn-success" role="button"> 주문 완료 </a>
-				<a href="./checkOutCancelled.jsp" class="btn btn-secondary"	role="button"> 취소 </a>			
+				
+			<a href="./ShippingInfo.jsp?cartId=<%=shipping_cartId%>"
+				class="btn btn-secondary" role="button"> 이전 </a>
+			<%
+			if (balance > sum) {
+			%>
+			<a href="./toss.jsp" class="btn btn-primary role="button">토스결제</a> <a
+				href="./thankCustomer.jsp" class="btn btn-success" role="button">
+				주문 완료 </a>
+			<%
+			} else {
+			%>
+			(잔액이 <%=(sum-balance) %>원 부족합니다)
+			<%
+			}
+			%>
+
+			<a href="./checkOutCancelled.jsp" class="btn btn-secondary"
+				role="button"> 취소 </a>
 		</div>
-	</div>	
+	</div>
 </body>
 </html>

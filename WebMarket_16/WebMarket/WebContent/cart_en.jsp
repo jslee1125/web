@@ -17,10 +17,10 @@
 	String cartId = session.getId();
 	DecimalFormat dFormat = new DecimalFormat("###,###");
 %>
-<title>cart</title>
+<title>장바구니</title>
 </head>
 <body class="bg-dark fontcolor">
-	<jsp:include page="header.jsp" />
+	<jsp:include page="header_en.jsp" />
 	
 	<div class="jumbotron bg-dark">
 		<div class="container">
@@ -69,7 +69,7 @@
 				<tr>
 					<th></th>
 					<th></th>
-					<th>Total amount</th>
+					<th>총액</th>
 					<th><%= dFormat.format(sum)%></th>
 					<th></th>
 				</tr>

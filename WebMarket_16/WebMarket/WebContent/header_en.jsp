@@ -6,11 +6,7 @@ function mypage_check(){
 	if(sid === "null"){
 		alert("please use after login!");
 	}else{
-<<<<<<< HEAD
 		location.href = "myPage.jsp";
-=======
-		location.href = "mypage.jsp";
->>>>>>> c12eda9403266f47fcd64c2b58bffff040938c9b
 	}
 }
 
@@ -81,15 +77,15 @@ body {
   border: none;
   border-radius: 4px;
   font-size: 16px;
-  cursor: pointer;
-}
+  }
+
+
 </style>
 <header class="sticky-header">
 	<p>
 	<div class="d-flex justify-content-around">
 		<div class="menu">
-			<a href="testmain_en.jsp">HOME</a>
-
+		<a href="testmain_en.jsp">HOME</a>
 			<%
 			String id = (String) session.getAttribute("userId");
 			if (id == null) {
@@ -103,9 +99,23 @@ body {
 			<%
 			}
 			%>
-
-
-			<a href="register_code.jsp">JOIN US</a> <a href="#"
+			
+			<%
+				if(id == null){
+			%>
+			<a href="register_code.jsp">JOIN US</a> 
+			<%
+				}else{
+			%>
+			<a href="order.jsp">ORDER</a>		
+			<%			
+				}
+			%>			
+			
+			
+			
+			
+			<a href="#"
 				onclick="cart_check()">CART</a> <a href="#" onclick="mypage_check()">MY
 				PAGE</a>
 		</div>
