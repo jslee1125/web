@@ -69,7 +69,7 @@
 				<tr>
 					<th></th>
 					<th></th>
-					<th>총액</th>
+					<th>Total amount</th>
 					<th><%= dFormat.format(sum)%></th>
 					<th></th>
 				</tr>
