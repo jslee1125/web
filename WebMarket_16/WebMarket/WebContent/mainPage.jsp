@@ -21,7 +21,7 @@ try {
   
 
   if (rs.next() && rs.getString("id").equals(id) && rs.getString("pw").equals(pw)) {
-    // 로그인 성공
+    // 로그인 성공 & 세션 저장
     session.setAttribute("userId", id);
     session.setAttribute("userPw", pw);
 	response.sendRedirect("testmain.jsp");

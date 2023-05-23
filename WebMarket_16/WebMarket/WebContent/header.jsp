@@ -68,7 +68,6 @@ function cart_check(){
 body {
 	background-color: black;
 }
-
 .button {
   display: inline-block;
   padding: 10px 20px;
@@ -79,6 +78,7 @@ body {
   border-radius: 4px;
   font-size: 16px;
   }
+
 
 </style>
 <header class="sticky-header">

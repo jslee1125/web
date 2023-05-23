@@ -6,7 +6,11 @@ function mypage_check(){
 	if(sid === "null"){
 		alert("please use after login!");
 	}else{
+<<<<<<< HEAD
 		location.href = "myPage.jsp";
+=======
+		location.href = "mypage.jsp";
+>>>>>>> c12eda9403266f47fcd64c2b58bffff040938c9b
 	}
 }
 
@@ -85,6 +89,7 @@ body {
 	<div class="d-flex justify-content-around">
 		<div class="menu">
 			<a href="testmain_en.jsp">HOME</a>
+
 			<%
 			String id = (String) session.getAttribute("userId");
 			if (id == null) {
