@@ -27,6 +27,7 @@ body {
 	String id = (String) session.getAttribute("userId");
 	%>
 	<br>
+	<br>
 	<%
 	if (id != null && id.equals("admin")) {
 	%>
@@ -44,7 +45,6 @@ body {
 		</table>
 	</center>
 
-	<br>
 	<br>
 	<hr />
 

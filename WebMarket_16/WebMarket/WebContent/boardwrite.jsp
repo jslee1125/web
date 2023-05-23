@@ -70,6 +70,7 @@ td a:hover {
 	<%@ include file="dbconn.jsp"%>
 
 	<%
+	session.setAttribute("page", "korea");
 	int num = 1;
 	List<BoardInfo> boards = new ArrayList<BoardInfo>();
 	String id = (String) session.getAttribute("userId");
@@ -110,6 +111,10 @@ td a:hover {
 	<div class="container">
 		<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
+		<h4 style="text-align: right;">
+			<a href="boardwrite.jsp">korea /</a>
+			<a href="boardwrite_en.jsp">english</a>
+		</h4>
 		<h2>상품 후기</h2>
 		<%
 		if (id == null) {

@@ -70,6 +70,7 @@ body>div {
 <body>
 	<%@ include file="dbconn.jsp"%>
 	<%
+	session.setAttribute("page", "korea");
 	request.setCharacterEncoding("utf-8");
 	int num = 1;
 	List<BoardInfo> boards = new ArrayList<BoardInfo>();
@@ -110,6 +111,9 @@ body>div {
 	<div class="container">
 	<p></p>
 		<img src="img/board.jpg" alt="My Image" width="100%" height="15%">
+		<h4 style="text-align: right;">
+			<a href="announcement.jsp">korea /</a> <a href="announcement_en.jsp">english</a>
+		</h4>
 		<h2>공지사항</h2>
 		<%
 		if (id == null) {

@@ -3,36 +3,46 @@
 <%@ include file="dbconn.jsp"%>
 <%@ page import="java.sql.*"%>
 <%@ page errorPage ="isErrorPage.jsp" %>
-
+<jsp:include page="header.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="header.jsp" />
+<style type="text/css">
+ #td {
+ color : white;
+ }
+</style>
 <script type="text/javascript">
-function edit(){
-	let editO = document.getElementById('submitBtn');
-	let inputPw = document.getElementById('pw');
-	let inputLocation =document.getElementById('location');
-	 inputPw.style.backgroundColor = 'yellow';
-/* 	 inputLocation.style.backgroundColor ='yellow'; */	
-	if(editO){
-		inputLocation.removeAttribute("readonly");
-		inputPw.removeAttribute("readonly");
-		document.getElementById('confirmBtn').style.display = 'inline-block';
-		 window.open('editPw.jsp','','300','200');
-	}
-}
 
+function edit(){
+/* 	let editBtn = document.getElementById('editBtn'); */
+
+	let inputPw = document.getElementById('pw');
+ 		document.getElementById('confirmBtn').style.display = '';
+		 
+ 	var child = window.open('editPw.jsp','child','300','200');
+		
+		  
+			editBtn.style.display = '';
+		    confirmBtn.style.display = 'inline-block';
+}
+function operation(){
+	let confrimBtn = document.getElementById('confirmBtn');
+	alert("수정되었습니다. 다시로그인해주세요.");
+	location.href = "logout.jsp";
+	
+}
 	
 </script>
 <%
 request.setCharacterEncoding("utf-8");
-String id = request.getParameter("id");
+String id = (String)session.getAttribute("userId");
+String pw = (String)session.getAttribute("userPw");
 try {
     pstmt = conn.prepareStatement("SELECT * FROM projectdata WHERE id = ?");
     pstmt.setString(1, id);
     rs = pstmt.executeQuery();
-    if(rs.next()){
+    if(rs.next() && rs.getString("id").equals(id)&& rs.getString("pw").equals(pw)){
 	String Dbname = rs.getString("name");
 	String Dbid = rs.getString("id");
 	String Dbpw = rs.getString("pw");
@@ -44,54 +54,56 @@ try {
 	String Dbphone = rs.getString("phone");
 	String Dbgrade = rs.getString("grade");
 	
+	session.setAttribute("DBid", Dbid);
+	session.setAttribute("DBpw", Dbpw);
 %>       
  <h1>나의 정보 보기</h1>
  <hr color = "blue";>
- 
 
  <table>
+
   <tr>
-    <td>이름:</td>
+    <td id="td">이름:</td>
     <td><input type="text" name="name" id="name" value="<%=Dbname %>" readonly size = "55px"></td>
   </tr>
   <tr>
-    <td>아이디:</td>
+    <td id="td">아이디:</td>
     <td><input type="text" name="id" id="id" value="<%=Dbid %>" readonly size = "55px"></td>
   </tr>
   <tr>
-    <td>비밀번호:</td>
+    <td id="td">비밀번호:</td>
   	<td><input type="text" name="pw" id="pw" value="<%=Dbpw %>" readonly size = "55px"></td>
   </tr>
   <tr>
-    <td>포지션:</td>
+    <td id="td">포지션:</td>
    <td><input type="text" name="position" id="position" value="<%=Dbposition %>" readonly size = "55px"></td>
   </tr>
   <tr>
-    <td>이메일:</td>
+    <td id="td">이메일:</td>
     <td><input type="text" name="email" id="email" value="<%=Dbemail %>" readonly size = "55px"></td>
   </tr>
   <tr>
-    <td>생년월일:</td>
+    <td id="td">생년월일:</td>
     <td><input type="text" name="birth" id="birth" value="<%=Dbbirth %>" readonly size = "55px"></td>
   </tr>
   <tr>
-    <td>주소:</td>
+    <td id="td">주소:</td>
     <td><input type="text" name="location" id="location" value="<%=Dblocation %>" readonly size = "55px"></td>
   </tr>
   <tr>
-    <td>잔고:</td>
+    <td id="td">잔고:</td>
     <td><input type="text" name="balance" id="balance" value="<%=Dbbalance %>" readonly size = "55px"></td>
   </tr>
   <tr>
-    <td>연락처:</td>
+    <td id="td">연락처:</td>
     <td><input type="phone" name="phone" id="name" value="<%=Dbphone %>" readonly size = "55px"></td>
   </tr>
   <tr>
-    <td>등급:</td>
+    <td id="td">등급:</td>
    <td><input type="text" name="grade" id="grade" value="<%=Dbgrade %>" readonly size = "55px"></td>
   </tr>
 </table>
-<button id="submitBtn" onclick="edit()">수정하기
+<button id="editBtn" onclick="edit()">수정하기
 <button id="confirmBtn" onclick="operation()" style="display: none"> 확인
 </form>
  
@@ -101,6 +113,14 @@ try {
  
  
  <%
+    }else{
+ %>
+    	<script>
+    	alert("비밀번호를 다시 입력해주세요.");
+    	history.go(-1);
+    	
+    	</script>
+ <% 
     }
 
 } catch (Exception e) {

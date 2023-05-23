@@ -27,7 +27,7 @@ try {
 	response.sendRedirect("testmain.jsp");
   } else {
     // 로그인 실패
-    out.println("로그인 실패");
+	  response.sendRedirect("login_failed.jsp");
   }
 } catch (Exception e) {
   out.println("로그인 처리 중 오류가 발생하였습니다.");

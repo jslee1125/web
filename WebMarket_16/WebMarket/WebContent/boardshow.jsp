@@ -62,6 +62,7 @@ body>div {
 <body>
 	<%
 	request.setCharacterEncoding("utf-8");
+	session.setAttribute("page", "korea");
 	int Number = Integer.parseInt(request.getParameter("title"));
 	String id = (String) session.getAttribute("userId");
 	String title = "";

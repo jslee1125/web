@@ -3,11 +3,13 @@
 <%@ page import="java.net.URLDecoder"%>
 <%@ page import="dto.Product"%>
 <%@ page import="dao.ProductRepository"%>
+<%@ page import="java.text.DecimalFormat" %>
 
 <%
 	request.setCharacterEncoding("UTF-8");
 
 	String cartId = session.getId();
+	DecimalFormat dFormat = new DecimalFormat("###,###");
 
 	String shipping_cartId = "";
 	String shipping_name = "";
@@ -57,16 +59,16 @@ color:ffffff;
 
 	<div class="container col-8 alert alert-info">
 		<div class="text-center ">
-			<h1>영수증</h1>
+			<h1>주문확인</h1>
 		</div>
 		<div class="row justify-content-between">
 			<div class="col-4" align="left">
 				<strong>배송 주소</strong> <br> 성명 : <% out.println(shipping_name); %>	<br> 
-				우편번호 : <% 	out.println(shipping_zipCode);%><br> 
-				주소 : <%	out.println(shipping_addressName);%>(<%	out.println(shipping_country);%>) <br>
+				우편번호 : <%out.println(shipping_zipCode);%><br> 
+				주소 : <%out.println(shipping_addressName);%>(<%	out.println(shipping_country);%>) <br>
 			</div>
 			<div class="col-4" align="right">
-				<p>	<em>배송일: <% out.println(shipping_shippingDate);%></em>
+				<p>	<em>배송일: <%out.println(shipping_shippingDate);%></em>
 			</div>
 		</div>
 		<div>
@@ -90,7 +92,7 @@ color:ffffff;
 			<tr>
 				<td class="text-center"><em><%=product.getPname()%> </em></td>
 				<td class="text-center"><%=product.getQuantity()%></td>
-				<td class="text-center"><%=product.getUnitPrice()%>원</td>
+				<td class="text-center"><%=dFormat.format(product.getUnitPrice())%>원</td>
 				<td class="text-center"><%=total%>원</td>
 			</tr>
 			<%
@@ -100,11 +102,11 @@ color:ffffff;
 				<td> </td>
 				<td> </td>
 				<td class="text-right">	<strong>총액: </strong></td>
-				<td class="text-center text-danger"><strong><%=sum%> </strong></td>
+				<td class="text-center text-danger"><strong><%=dFormat.format(sum)%>원 </strong></td>
 			</tr>
 			</table>
 			
-				<a href="./ShippingInfo.jsp?cartId=<%=shipping_cartId%>"class="btn btn-secondary" role="button"> 이전 </a>
+				<a href="./cart.jsp"class="btn btn-secondary" role="button"> 이전 </a>
 				<a href="./toss.jsp" class="btn btn-primary role="button">토스결제</a>
 				<a href="./thankCustomer.jsp"  class="btn btn-success" role="button"> 주문 완료 </a>
 				<a href="./checkOutCancelled.jsp" class="btn btn-secondary"	role="button"> 취소 </a>			

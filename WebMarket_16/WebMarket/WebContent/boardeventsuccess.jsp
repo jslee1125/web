@@ -15,7 +15,8 @@
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
 	String writer = (String) session.getAttribute("userId");
-
+	String Page = (String) session.getAttribute("page");
+	
 	try {
 		String sql = "insert into event (title,content,writer,date) Values(?,?,?,?)";
 		pstmt = conn.prepareStatement(sql);
@@ -34,7 +35,11 @@
 			conn.close();
 	}
 
-	response.sendRedirect("boardeventwrite.jsp");
+	if (Page.equals("korea")) {
+		response.sendRedirect("boardeventwrite.jsp");
+	} else {
+		response.sendRedirect("boardeventwrite_en.jsp");
+	}
 	%>
 
 </body>

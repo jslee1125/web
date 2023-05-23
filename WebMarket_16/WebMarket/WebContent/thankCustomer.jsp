@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.net.URLDecoder"%>
+<%@ page import="java.sql.*" %>
+<%@ include file="dbconn.jsp" %>
+
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
@@ -12,13 +15,14 @@
 </head>
 <body>
 	<%
+	
 	String shipping_cartId = "";
 	String shipping_name = "";
 	String shipping_shippingDate = "";
 	String shipping_country = "";
 	String shipping_zipCode = "";
 	String shipping_addressName = "";
-
+	String id = (String)session.getAttribute("userId");
 	Cookie[] cookies = request.getCookies();
 
 	if (cookies != null) {
@@ -50,6 +54,19 @@
 			<%
 		out.println(shipping_cartId);
 		%>
+		
+		<%
+		String sql = "insert into orders (id, order_num, order_date) values(?,?,now())";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		pstmt.setString(2, shipping_cartId);
+		pstmt.executeUpdate();
+		
+		if (pstmt != null)
+	 		pstmt.close();
+	 	if (conn != null)
+			conn.close(); %>
+		
 		
 	</div>
 	<div class="container">

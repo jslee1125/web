@@ -37,15 +37,15 @@ body {
 	background-repeat: no-repeat
 }
 
-
 body>div {
 	background-color: white;
 }
+
 .container {
-    border: 4px solid #f2f2f2;
-    padding: 10px;
-    border-radius: 5px;
-  }
+	border: 4px solid #f2f2f2;
+	padding: 10px;
+	border-radius: 5px;
+}
 </style>
 </head>
 <body>
@@ -60,10 +60,9 @@ body>div {
 		<h2>공지사항</h2>
 		<form action="announcementchangesuccess.jsp" method="post">
 			<div class="form-group">
-				<label for="title">제목</label>
-				<input type="text" class="form-control" id="title"
-					value="<%=title%>" name="title" maxlength="100" required="required"
-					pattern=".{4,100}" readonly>
+				<label for="title">제목</label> <input type="text"
+					class="form-control" id="title" value="<%=title%>" name="title"
+					maxlength="100" required="required" pattern=".{4,100}" readonly>
 			</div>
 			<div class="form-group">
 				<label for="content">내용</label>
@@ -73,7 +72,8 @@ body>div {
 			<p>
 			<p></p>
 			<button type="submit" class="btn btn-default">등록</button>
-			<button type="button" class="btn btn-default" onclick="DeleteCheck(<%=number%>, 4)">삭제</button>
+			<button type="button" class="btn btn-default"
+				onclick="DeleteCheck(<%=number%>, 4)">삭제</button>
 		</form>
 		<p>
 		<form action="announcement.jsp" method="post">

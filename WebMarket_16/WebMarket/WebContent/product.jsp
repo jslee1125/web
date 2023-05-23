@@ -19,13 +19,20 @@
 </style>
 <title>상품 상세 정보</title>
 <script type="text/javascript">
+
 	function addToCart() {
+		var userid = '<%=session.getAttribute("userId")%>';
+		if(userid === "null"){
+			alert('로그인하고 이용해주세요!');
+		return false;
+		}
 		if (confirm("상품을 장바구니에 추가하시겠습니까?")) {
 			document.addForm.submit();
-		} else {		
+		} else {
 			document.addForm.reset();
 		}
 	}
+	
 </script>
 </head>
 <body>
@@ -37,6 +44,7 @@
 		</div>
 	</div>
 	<%
+		String sid = (String)session.getAttribute("userId");
 		String id = request.getParameter("id");
 		/* ProductRepository dao = ProductRepository.getInstance();
 		Product product = dao.getProductById(id); */
@@ -49,20 +57,17 @@
 	<div class="container my-class">
 		<div class="row">
 			<div class ="col-md-5">
-				<img src="resources/images/<%=rs.getString("p_fileName")%>" style="width: 100%" />
+				<img src="resources/images/<%=rs.getString("p_fileName")%>" style="width: 70%" />
 			</div>
 			<div class="col-md-6">
 				<h3><%=rs.getString("p_Name")%></h3>
 				<p><%=rs.getString("p_description")%>
 				<p><b>상품 코드 : </b><span class="badge badge-danger"> <%=rs.getString("p_id")%></span>
-				<p><b>제조사</b> : <%=rs.getString("p_manufacturer")%>
 				<p><b>분류</b> : <%=rs.getString("p_category")%>
-				<p><b>재고 수</b> : <%=rs.getString("p_unitsInStock")%>
 				<h4><%=rs.getInt("p_unitPrice")%>원</h4>
 				<p><form name="addForm" action="./addCart.jsp?id=<%=rs.getString("p_id")%>&name=<%=rs.getString("p_name")%>&price=<%=rs.getInt("p_unitPrice")%>" method="post">
-					<a href="#" class="btn btn-info" onclick="addToCart()"> 상품 주문 &raquo;</a> 
-					<a href="./cart.jsp" class="btn btn-warning"> 장바구니 &raquo;</a>
-					<a href="./products.jsp" class="btn btn-secondary"> 상품 목록 &raquo;</a>
+					<a href="#" class="btn btn-info" onclick="addToCart()"> 장바구니 </a> 
+					<a href="./testmain.jsp" class="btn btn-secondary"> 상품 목록 </a>
 				</form>
 				
 				<%

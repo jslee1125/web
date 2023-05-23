@@ -4,11 +4,12 @@
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
 <style>
-.my-class{
-color: #d0a85c;
+.my-class {
+	color: #d0a85c;
 }
-.font-color{
-color:ffffff;
+
+.font-color {
+	color: ffffff;
 }
 </style>
 <title>상품 편집</title>
@@ -22,7 +23,7 @@ color:ffffff;
 </script>
 </head>
 <%
-	String edit = request.getParameter("edit");
+String edit = request.getParameter("edit");
 %>
 </head>
 <body class="bg-dark">
@@ -37,38 +38,42 @@ color:ffffff;
 		<div class="row" align="center">
 			<%@ include file="dbconn.jsp"%>
 			<%
-				String sql = "select * from product";
-				pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				while (rs.next()) {
+			String sql = "select * from product";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
 			%>
 			<div class="col-md-4">
-				<img src="resources/images/<%=rs.getString("p_fileName")%>" style="width: 100%">
+				<img src="resources/images/<%=rs.getString("p_fileName")%>"
+					style="width: 50%">
 				<h3><%=rs.getString("p_name")%></h3>
 				<p><%=rs.getString("p_description")%>
 				<p><%=rs.getString("p_UnitPrice")%>원
 				<p>
 					<%
-						if (edit.equals("update")) {
+					if (edit.equals("update")) {
 					%>
-					<a href="./updateProduct.jsp?id=<%=rs.getString("p_id")%>"	class="btn btn-success" role="button"> 수정 &raquo;></a>
+					<a href="./updateProduct.jsp?id=<%=rs.getString("p_id")%>"
+						class="btn btn-success" role="button"> 수정 &raquo;></a>
 					<%
-						} else if (edit.equals("delete")) {
+					} else if (edit.equals("delete")) {
 					%>
-					<a href="#" onclick="deleteConfirm('<%=rs.getString("p_id")%>')" class="btn btn-danger" role="button">삭제 &raquo;></a>
+					<a href="#" onclick="deleteConfirm('<%=rs.getString("p_id")%>')"
+						class="btn btn-danger" role="button">삭제 &raquo;></a>
 					<%
-						}
-					%>				
+					}
+					%>
+				
 			</div>
 			<%
-				}
-				if (rs != null)
-					rs.close();
-	 			if (pstmt != null)
-	 				pstmt.close();
-	 			if (conn != null)
-					conn.close();
-	 			%>
+			}
+			if (rs != null)
+			rs.close();
+			if (pstmt != null)
+			pstmt.close();
+			if (conn != null)
+			conn.close();
+			%>
 		</div>
 		<hr>
 	</div>

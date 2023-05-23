@@ -29,7 +29,7 @@
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 /
 / 기타 추가 스타일링 */
 }
-</style>
+</style>	
 
 <menu class="sticky-menu">
 <nav class="navbar navbar-expand navbar-dark bg-dark">

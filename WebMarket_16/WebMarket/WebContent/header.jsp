@@ -6,7 +6,7 @@ function mypage_check(){
 	if(sid === "null"){
 		alert("로그인을 해주세요!");
 	}else{
-		location.href = "mypage.jsp";
+		location.href = "myPage.jsp";
 	}
 }
 
@@ -68,12 +68,24 @@ function cart_check(){
 body {
 	background-color: black;
 }
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  }
+
 </style>
 <header class="sticky-header">
 	<p>
 	<div class="d-flex justify-content-around">
 		<div class="menu">
-
+		<a href="testmain.jsp">HOME</a>
 			<%
 			String id = (String) session.getAttribute("userId");
 			if (id == null) {
@@ -87,9 +99,23 @@ body {
 			<%
 			}
 			%>
-
-
-			<a href="register_code.jsp">JOIN US</a> <a href="#"
+			
+			<%
+				if(id == null){
+			%>
+			<a href="register_code.jsp">JOIN US</a> 
+			<%
+				}else{
+			%>
+			<a href="order.jsp">ORDER</a>		
+			<%			
+				}
+			%>			
+			
+			
+			
+			
+			<a href="#"
 				onclick="cart_check()">CART</a> <a href="#" onclick="mypage_check()">MY
 				PAGE</a>
 		</div>
@@ -97,6 +123,7 @@ body {
 		<div class="menu">
 			<a href="boardwrite.jsp">상품후기</a><a href="boardinquirewrite.jsp">상품문의</a>
 			<a href="boardeventwrite.jsp">이벤트</a><a href="announcement.jsp">공지사항</a>
+			<a href="testmain_en.jsp" class="button">english</a>
 		</div>
 	</div>
 </header>

@@ -9,6 +9,10 @@
 <title>DARIUS</title>
 
 <style type="text/css">
+.my-class {
+	color: #d0a85c;
+}
+
 body {
 	background-color: black;
 }

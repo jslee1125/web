@@ -12,30 +12,35 @@
 	<%@ include file="dbconn.jsp"%>
 	<%
 	request.setCharacterEncoding("utf-8");
-	String title = request.getParameter("title");
-	String content = request.getParameter("content");
-	String writer = (String) session.getAttribute("userId");
-	int number =(int) session.getAttribute("number");
-	 
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String writer = (String) session.getAttribute("userId");
+		String Page = (String) session.getAttribute("page");
+		int number =(int) session.getAttribute("number");
+		 
 
-	if (writer != null) {
-		try {
-			String sql = "update announcement set content=? where titlenum= ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, content);
-			pstmt.setInt(2, number);
-			pstmt.executeUpdate();
+		if (writer != null) {
+			try {
+		String sql = "update announcement set content=? where titlenum= ?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, content);
+		pstmt.setInt(2, number);
+		pstmt.executeUpdate();
 
-		} catch (Exception excep) {
+			} catch (Exception excep) {
 
-		} finally {
-			if (pstmt != null)
-		pstmt.close();
-			if (conn != null)
-		conn.close();
+			} finally {
+		if (pstmt != null)
+			pstmt.close();
+		if (conn != null)
+			conn.close();
+			}
 		}
-	}
-	response.sendRedirect("announcement.jsp");
+		if (Page.equals("korea")) {
+			response.sendRedirect("announcement.jsp");
+		} else {
+			response.sendRedirect("announcement_en.jsp");
+		}
 	%>
 
 </body>
