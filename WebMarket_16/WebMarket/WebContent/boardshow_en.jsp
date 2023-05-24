@@ -65,6 +65,8 @@ body>div {
 	session.setAttribute("page", "english");
 	int Number = Integer.parseInt(request.getParameter("title"));
 	String id = (String) session.getAttribute("userId");
+	int currentPage = Integer.parseInt(request.getParameter("page"));
+	String search =request.getParameter("search");
 	String title = "";
 	String content = "";
 	String writer = "";
@@ -138,7 +140,11 @@ body>div {
 			</tr>
 
 		</table>
-		<form action="boardwrite_en.jsp" method="post">
+		 <%if(search == null){ %>
+		<form action="boardwrite_en.jsp?page=<%=currentPage %>" method="post">
+		<%}else{ %>
+		<form action="boardsearch_en.jsp?page=<%=currentPage %>&search=<%=search %>" method="post">
+		<%} %>
 			<%
 			if (writer.equals(id)) {
 			%>
