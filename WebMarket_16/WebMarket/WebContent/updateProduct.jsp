@@ -74,21 +74,6 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-2">제고 수</label>
-						<div class="col-sm-3">
-							<input type="text" id="unitsInStock" name="unitsInStock"
-								class="form-control" value="<%=rs.getLong("p_unitsInStock")%>">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2">상태</label>
-						<div class="col-sm-5">
-							<input type="radio" name="condition" value="New "> 신규 제품 <input
-								type="radio" name="condition" value="Old"> 중고 제품 <input
-								type="radio" name="condition" value="Refurbished"> 재생 제품
-						</div>
-					</div>
-					<div class="form-group row">
 						<label class="col-sm-2">이미지</label>
 						<div class="col-sm-5">
 							<input type="file" name="productImage" class="form-control">
