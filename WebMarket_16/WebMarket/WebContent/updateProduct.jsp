@@ -4,12 +4,17 @@
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
 <title>상품 수정</title>
+<style>
+.font-color{
+color:#ffffff;
+}
+</style>
 </head>
-<body>
-	<jsp:include page="menu.jsp" />
-	<div class="jumbotron">
+<body class="bg-dark font-color">
+	<jsp:include page="topadminmenu.jsp" />
+	<div class="jumbotron bg-dark">
 		<div class="container">
-			<h1 class="display-3">상품 수정</h1>
+			<h1 class="display-3 font-color">상품 수정</h1>
 		</div>
 	</div>
 	<%@ include file="dbconn.jsp"%>
@@ -57,13 +62,6 @@
 						<div class="col-sm-5">
 							<textarea name="description" cols="50" rows="2"
 								class="form-control"><%=rs.getString("p_description")%></textarea>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2">제조사</label>
-						<div class="col-sm-3">
-							<input type="text" name="manufacturer" class="form-control"
-								value="<%=rs.getString("p_manufacturer")%>">
 						</div>
 					</div>
 					<div class="form-group row">
