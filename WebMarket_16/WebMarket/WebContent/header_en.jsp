@@ -79,13 +79,13 @@ body {
   font-size: 16px;
 }
 
-
 </style>
 <header class="sticky-header">
 	<p>
 	<div class="d-flex justify-content-around">
 		<div class="menu">
 			<a href="testmain_en.jsp">HOME</a>
+		<a href="testmain_en.jsp">HOME</a>
 			<%
 			String id = (String) session.getAttribute("userId");
 			if (id == null) {
@@ -111,7 +111,6 @@ body {
 			<%			
 				}
 			%>			
-
 			<a href="#"
 				onclick="cart_check()">CART</a> <a href="#" onclick="mypage_check()">MY
 				PAGE</a>
