@@ -16,10 +16,7 @@
 	String name = multi.getParameter("name");
 	String unitPrice = multi.getParameter("unitPrice");
 	String description = multi.getParameter("description");
-	String manufacturer = multi.getParameter("manufacturer");
 	String category = multi.getParameter("category");
-	String unitsInStock = multi.getParameter("unitsInStock");
-	String condition = multi.getParameter("condition");
 
 	Integer price;
 
@@ -28,12 +25,6 @@
 	else
 		price = Integer.valueOf(unitPrice);
 
-	long stock;
-
-	if (unitsInStock.isEmpty())
-		stock = 0;
-	else
-		stock = Long.valueOf(unitsInStock);
 
 	Enumeration files = multi.getFileNames();
 	String fname = (String) files.nextElement();
@@ -47,29 +38,23 @@
 
 		if (rs.next()) {
 			if (fileName != null) {
-				sql = "UPDATE product SET p_name=?, p_unitPrice=?, p_description=?, p_manufacturer=?, p_category=?, p_unitsInStock=?, p_condition=?, p_fileName=? WHERE p_id=?";
+				sql = "UPDATE product SET p_name=?, p_unitPrice=?, p_description=?, p_category=?, p_fileName=? WHERE p_id=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, name);
 				pstmt.setInt(2, price);
 				pstmt.setString(3, description);
-				pstmt.setString(4, manufacturer);
-				pstmt.setString(5, category);
-				pstmt.setLong(6, stock);
-				pstmt.setString(7, condition);
-				pstmt.setString(8, fileName);
-				pstmt.setString(9, productId);
+				pstmt.setString(4, category);
+				pstmt.setString(5, fileName);
+				pstmt.setString(6, productId);
 				pstmt.executeUpdate();
 			} else {
-				sql = "UPDATE product SET p_name=?, p_unitPrice=?, p_description=?, p_manufacturer=?, p_category=?, p_unitsInStock=?, p_condition=? WHERE p_id=?";
+				sql = "UPDATE product SET p_name=?, p_unitPrice=?, p_description=?, p_category=? WHERE p_id=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, name);
 				pstmt.setInt(2, price);
 				pstmt.setString(3, description);
-				pstmt.setString(4, manufacturer);
-				pstmt.setString(5, category);
-				pstmt.setLong(6, stock);
-				pstmt.setString(7, condition);
-				pstmt.setString(8, productId);
+				pstmt.setString(4, category);
+				pstmt.setString(5, productId);
 				pstmt.executeUpdate();
 			}
 		}
