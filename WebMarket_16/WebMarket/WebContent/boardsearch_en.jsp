@@ -180,8 +180,8 @@ td a:hover {
 					for (BoardInfo board : currentBoards) {
 					%>
 					<tr>
-						<td><a href="./boardshow_en.jsp?title=<%=board.getNumber()%>"><%=(currentPage - 1) * 10 + num%></a></td>
-						<td><a href="./boardshow_en.jsp?title=<%=board.getNumber()%>"><%=board.getTitle()%></a></td>
+						<td><a href="./boardshow_en.jsp?title=<%=board.getNumber()%>&page=<%=currentPage %>&search=<%=search%>"><%=(currentPage - 1) * 10 + num%></a></td>
+						<td><a href="./boardshow_en.jsp?title=<%=board.getNumber()%>&page=<%=currentPage %>&search=<%=search%>"><%=board.getTitle()%></a></td>
 
 						<td><%=board.getRating()%></td>
 						<td><%=board.getWriter()%></td>
@@ -203,17 +203,17 @@ td a:hover {
 			<div style="text-align: center;">
 				<%
 				if (currentPage > 1) {
-					out.print("<a href='boardwrite_en.jsp?page=" + (currentPage - 1) + "'>&lt; previous</a>");
+					out.print("<a href='boardsearch_en.jsp?page=" + (currentPage - 1) + "&search="+search+"'>&lt; previous</a>");
 				}
 				for (int i = 1; i <= totalPageCount; i++) {
 					if (i == currentPage) {
-						out.print("<b><a class='active' href='boardwrite_en.jsp?page=" + i + "'>" + i + "&nbsp</a></b>");
+						out.print("<b><a class='active' href='boardsearch_en.jsp?page=" + i + "&search="+search+"'>" + i + "&nbsp</a></b>");
 					} else {
-						out.print("<a href='boardwrite_en.jsp?page=" + i + "'>" + i + "&nbsp</a>");
+						out.print("<a href='boardsearch_en.jsp?page=" + i + "&search="+search+"'>" + i + "&nbsp</a>");
 					}
 				}
 				if (currentPage < totalPageCount) {
-					out.print("<a href='boardwrite_en.jsp?page=" + (currentPage + 1) + "'>next &gt;</a>");
+					out.print("<a href='boardsearch_en.jsp?page=" + (currentPage + 1) + "&search="+search+"'>next &gt;</a>");
 				}
 				%>
 			</div>

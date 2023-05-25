@@ -53,29 +53,9 @@ color:ffffff;
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2"><fmt:message key="manufacturer"/></label>
-				<div class="col-sm-3">
-					<input type="text" name="manufacturer" class="form-control">
-				</div>
-			</div>
-			<div class="form-group row">
 				<label class="col-sm-2"><fmt:message key="category" /></label>
 				<div class="col-sm-3">
 					<input type="text" name="category" class="form-control" >
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-2"><fmt:message key="unitsInStock" /></label>
-				<div class="col-sm-3">
-					<input type="text" id ="unitsInStock" name="unitsInStock" class="form-control" >
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-2"><fmt:message key="condition" /></label>
-				<div class="col-sm-5">
-					<input type="radio" name="condition" value="New " ><fmt:message key="condition_New" />
-					<input type="radio" name="condition" value="Old" ><fmt:message key="condition_Old" /> 
-					<input type="radio" name="condition" value="Refurbished" ><fmt:message key="condition_Refurbished" />
 				</div>
 			</div>
 			<div class ="form-group row">

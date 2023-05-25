@@ -20,7 +20,7 @@
 <title>cart</title>
 </head>
 <body class="bg-dark fontcolor">
-	<jsp:include page="header.jsp" />
+	<jsp:include page="header_en.jsp" />
 	
 	<div class="jumbotron bg-dark">
 		<div class="container">

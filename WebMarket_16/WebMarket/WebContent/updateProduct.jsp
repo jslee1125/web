@@ -4,12 +4,17 @@
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
 <title>상품 수정</title>
+<style>
+.font-color{
+color:#ffffff;
+}
+</style>
 </head>
-<body>
-	<jsp:include page="menu.jsp" />
-	<div class="jumbotron">
+<body class="bg-dark font-color">
+	<jsp:include page="topadminmenu.jsp" />
+	<div class="jumbotron bg-dark">
 		<div class="container">
-			<h1 class="display-3">상품 수정</h1>
+			<h1 class="display-3 font-color">상품 수정</h1>
 		</div>
 	</div>
 	<%@ include file="dbconn.jsp"%>
@@ -60,32 +65,10 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-2">제조사</label>
-						<div class="col-sm-3">
-							<input type="text" name="manufacturer" class="form-control"
-								value="<%=rs.getString("p_manufacturer")%>">
-						</div>
-					</div>
-					<div class="form-group row">
 						<label class="col-sm-2">분류</label>
 						<div class="col-sm-3">
 							<input type="text" name="category" class="form-control"
 								value="<%=rs.getString("p_category")%>">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2">제고 수</label>
-						<div class="col-sm-3">
-							<input type="text" id="unitsInStock" name="unitsInStock"
-								class="form-control" value="<%=rs.getLong("p_unitsInStock")%>">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2">상태</label>
-						<div class="col-sm-5">
-							<input type="radio" name="condition" value="New "> 신규 제품 <input
-								type="radio" name="condition" value="Old"> 중고 제품 <input
-								type="radio" name="condition" value="Refurbished"> 재생 제품
 						</div>
 					</div>
 					<div class="form-group row">

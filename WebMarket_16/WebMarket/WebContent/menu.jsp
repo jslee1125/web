@@ -39,7 +39,7 @@
 		</div>
 		<div>
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="#">회원정보변경</a></li>
+				<li class="nav-item"><a class="nav-link" href="customer_Inf.jsp">회원정보변경</a></li>
 				<li class="nav-item"><a class="nav-link" href="./testmain.jsp">상품 목록</a></li>
 				<li class="nav-item"><a class="nav-link" href="addProduct.jsp">상품 등록</a></li>
 				<li class="nav-item"><a class="nav-link" href="./editProduct.jsp?edit=update">상품 수정</a></li>

@@ -3,7 +3,7 @@ function CheckAddProduct() {
 	var productId = document.getElementById("productId");
 	var name = document.getElementById("name");
 	var unitPrice = document.getElementById("unitPrice");
-	var unitsInStock = document.getElementById("unitsInStock");
+	
 	
 	// 상품아아디 체크
 	if (!check(/^[0-9]{3,11}$/, productId,
@@ -32,14 +32,6 @@ function CheckAddProduct() {
 	} else if (!check(/^\d+(?:[.]?[\d]?[\d])?$/, unitPrice,
 			"[가격]\n소수점 둘째 자리까지만 입력하세요"))
 		return false;
-
-	// 재고 수 체크
-	if (isNaN(unitsInStock.value)) {
-		alert("[재고 수]\n숫자만 입력하세요");
-		unitsInStock.select();
-		unitsInStock.focus();
-		return false;
-	}
 
 	function check(regExp, e, msg) {
 

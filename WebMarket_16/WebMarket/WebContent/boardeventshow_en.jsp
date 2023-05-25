@@ -48,6 +48,8 @@ body>div {
 	<%
 	request.setCharacterEncoding("utf-8");
 	int Number = Integer.parseInt(request.getParameter("title"));
+	int currentPage = Integer.parseInt(request.getParameter("page"));
+	String search =request.getParameter("search");
 	String id = (String) session.getAttribute("userId");
 	String title = "";
 	String content = "";
@@ -110,7 +112,11 @@ body>div {
 			</tr>
 
 		</table>
-		<form action="boardeventwrite_en.jsp" method="post">
+		<%if(search == null){ %>
+		<form action="boardeventwrite_en.jsp?page=<%=currentPage %>" method="post">
+		<%}else{ %>
+		<form action="boardeventsearch_en.jsp?page=<%=currentPage %>&search=<%=search %>" method="post">
+		<%} %>
 				<%
 			if (writer.equals(id)) {
 			%>

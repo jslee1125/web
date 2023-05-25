@@ -32,7 +32,10 @@ function operation(){
 	location.href = "logout.jsp";
 	
 }
-	
+function deleteInf(){
+	let deleteBtn = document.getElementById('deleteBtn')
+	location.href = "delete.jsp";
+}
 </script>
 <%
 request.setCharacterEncoding("utf-8");
@@ -103,6 +106,7 @@ try {
    <td><input type="text" name="grade" id="grade" value="<%=Dbgrade %>" readonly size = "55px"></td>
   </tr>
 </table>
+<button id="deleteBtn" onclick ="deleteInf()"> 회원탈퇴
 <button id="editBtn" onclick="edit()">수정하기
 <button id="confirmBtn" onclick="operation()" style="display: none"> 확인
 </form>

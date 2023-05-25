@@ -176,9 +176,9 @@ td a:hover {
 					%>
 					<tr>
 						<td><a
-							href="./boardeventshow_en.jsp?title=<%=board.getNumber()%>"><%=(currentPage - 1) * 10 + num%></a></td>
+							href="./boardeventshow_en.jsp?title=<%=board.getNumber()%>&page=<%=currentPage %>"><%=(currentPage - 1) * 10 + num%></a></td>
 						<td><a
-							href="./boardeventshow_en.jsp?title=<%=board.getNumber()%>"><%=board.getTitle()%></a></td>
+							href="./boardeventshow_en.jsp?title=<%=board.getNumber()%>&page=<%=currentPage %>"><%=board.getTitle()%></a></td>
 						<td><%=board.getWriter()%></td>
 						<td><%=board.getRegisterDateTime().toLocalDate()%></td>
 					</tr>

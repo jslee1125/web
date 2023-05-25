@@ -203,10 +203,10 @@ body>div {
 					%>
 					<tr>
 						<td><a
-							href="./boardinquireshow_en.jsp?title=<%=board.getNumber()%>"
+							href="./boardinquireshow_en.jsp?title=<%=board.getNumber()%>&page=<%=currentPage %>"
 							onclick="UserCheck(event, '<%=board.getTitle()%>')"><%=(currentPage - 1) * 10 + num%></a></td>
 						<td><a
-							href="./boardinquireshow_en.jsp?title=<%=board.getNumber()%>"
+							href="./boardinquireshow_en.jsp?title=<%=board.getNumber()%>&page=<%=currentPage %>"
 							onclick="UserCheck(event, '<%=board.getTitle()%>')"><%=board.getTitle()%></a></td>
 						<td><%=board.getRating()%></td>
 						<td><%=board.getWriter()%></td>

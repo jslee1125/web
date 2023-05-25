@@ -20,10 +20,7 @@
 	String name = multi.getParameter("name");
 	String unitPrice = multi.getParameter("unitPrice");
 	String description = multi.getParameter("description");
-	String manufacturer = multi.getParameter("manufacturer");
 	String category = multi.getParameter("category");
-	String unitsInStock = multi.getParameter("unitsInStock");
-	String condition = multi.getParameter("condition");
 
 	Integer price;
 
@@ -32,28 +29,19 @@
 	else
 		price = Integer.valueOf(unitPrice);
 
-	long stock;
-
-	if (unitsInStock.isEmpty())
-		stock = 0;
-	else
-		stock = Long.valueOf(unitsInStock);
 
 	Enumeration files = multi.getFileNames();
 	String fname = (String) files.nextElement();
 	String fileName = multi.getFilesystemName(fname);
 
-	String sql = "insert into product values(?,?,?,?,?,?,?,?,?)";
+	String sql = "insert into product(p_id, p_name, p_unitPrice, p_description, p_category, p_fileName) values(?,?,?,?,?,?)";
 	pstmt = conn.prepareStatement(sql);
 	pstmt.setString(1, productId);
 	pstmt.setString(2, name);
 	pstmt.setInt(3, price);
 	pstmt.setString(4, description);
 	pstmt.setString(5, category);
-	pstmt.setString(6, manufacturer);
-	pstmt.setLong(7, stock);
-	pstmt.setString(8, condition);
-	pstmt.setString(9, fileName);
+	pstmt.setString(6, fileName);
 	pstmt.executeUpdate();
 	
 	if (pstmt != null)
@@ -61,5 +49,5 @@
  	if (conn != null)
 		conn.close();
 	
- 	response.sendRedirect("products.jsp");
+ 	response.sendRedirect("testmain.jsp");
 %>

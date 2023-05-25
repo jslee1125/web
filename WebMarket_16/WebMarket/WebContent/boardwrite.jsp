@@ -177,8 +177,8 @@ td a:hover {
 					for (BoardInfo board : currentBoards) {
 					%>
 					<tr>
-						<td><a href="./boardshow.jsp?title=<%=board.getNumber()%>"><%=(currentPage - 1) * 10 + num%></a></td>
-						<td><a href="./boardshow.jsp?title=<%=board.getNumber()%>"><%=board.getTitle()%></a></td>
+						<td><a href="./boardshow.jsp?title=<%=board.getNumber()%>&page=<%=currentPage %>"><%=(currentPage - 1) * 10 + num%></a></td>
+						<td><a href="./boardshow.jsp?title=<%=board.getNumber()%>&page=<%=currentPage %>"><%=board.getTitle()%></a></td>
 
 						<td><%=board.getRating()%></td>
 						<td><%=board.getWriter()%></td>

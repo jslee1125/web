@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ include file ="dbconn.jsp" %>
+<%@ page import ="java.util.*" %>
 <%@ page import = "java.sql.*" %>
 <!DOCTYPE html>
 <html>
@@ -37,19 +38,6 @@ String phone= phone1 + phone2 + phone3;
 String grade= request.getParameter("grade");
 
 %>
-<p><h1>입력하신 정보</h1>
-<p> 이름: <%= name %>
-<p> 아이디: <%= id %>
-<p> 비번  <%= pw %>
-<p> 비번확인:  <%= re_pw %>
-<p> 포지션:  <%= position %>
-<p> 이메일:  <%= email %>
-<p> 성별:  <%= sex %>
-<p> 생년월일:  <%= birth %>
-<p> 주소:  <%= location %>
-<p> 잔고:  <%= balance %>
-<p> 연락처:  <%= phone %>
-<p> 등급: <%= grade %>
 <p><h2>회원등록이 완료되었습니다.</h2>
 <a href="loginpage.jsp">돌아가기</a>
 <%
@@ -75,6 +63,7 @@ try{
 }finally{
 	if(pstmt !=null)pstmt.close();
 	if(conn !=null)conn.close();
+	response.sendRedirect("testmain.jsp");
 }
 
 

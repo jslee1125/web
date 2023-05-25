@@ -39,7 +39,7 @@
 		</div>
 		<div>
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="#">edit information</a></li>
+				<li class="nav-item"><a class="nav-link" href="customer_Inf.jsp">edit information</a></li>
 				<li class="nav-item"><a class="nav-link" href="./testmain.jsp">product list</a></li>
 				<li class="nav-item"><a class="nav-link" href="addProduct.jsp">product registration</a></li>
 				<li class="nav-item"><a class="nav-link" href="./editProduct.jsp?edit=update">product modification</a></li>
